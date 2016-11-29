@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8" />
+	<title>stacking context</title>
+	<!--<link href="http://cdn.bootcss.com/bootstrap/3.0.0/css/bootstrap.css" rel="stylesheet">-->
+	<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+	<style>
+		.super {
+			vertical-align: super;
+			<!--percentage or pixel -->
+		}
+		
+		.sub {
+			vertical-align: sub;
+		}
+		
+		.pre {
+			white-space: pre;
+		}
+		
+		.outer {
+			width: 1000px;
+			background: red;
+		}
+		
+		.inner {
+			width: 500px;
+			height: 500px;
+			background: green;
+		}
+	</style>
+</head>
+ <!--stacking 
+                 background\boder
+				 z-index:-
+				 block  
+				 float
+				 inline inlneblock
+				 z-index:0 z-index:auto
+				 z-index:+
+ -->
+<body>
+	<div class="container-fluid">
+		<p>stacking</p>
+		<ul>
+			<li>
+				<a target="_blank" href="http://www.cnblogs.com/coco1s/p/5899089.html">ChokCoco</a>
+			</li>
+			<li>
+				<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context">MDN</a>
+			</li>
+		</ul>
+
+		<div class="outer">
+			<div class="inner"></div>
+			<div class="inner"></div>
+		</div>
+
+		<button type="button" id="btn" class="btn btn-default">改变items</button>
+		<button type="button" id="btn1" class="btn btn-default">改变selectedIndex</button>
+	</div>
+	<script>
+     
+    </script>
+</body>
+
+</html>

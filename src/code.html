@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>code</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.0.0/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+    <style>
+        pre,
+        code {
+            font-family: monospace;
+        }
+        
+        pre {
+            display: block;
+            margin: 1em 0;
+            white-space: pre;
+            tab-size: 2;
+            padding: 0;
+            line-height: 1.5;
+            background: beige;
+            background-size: auto 3em;
+            background-origin: content-box;
+            background-image: linear-gradient(transparent 50%, rgba(0, 0, 0, .2) 0);
+            font-size: inherit;
+        }
+        .pre{
+                background: beige;
+                background-origin: content-box;
+                background-repeat: repeat-y;
+                background-size: 5px;
+                background-image: linear-gradient(to right,transparent 50%, #66bb22 0);
+                padding-left: 1em;
+                min-height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <p>For my own slect widget</p>
+
+        <div class="row">
+            <div class="col-md-12">
+                <pre>
+
+                    <code>
+语法：
+<linear-gradient> = linear-gradient([ [ <angle> | to <side-or-corner> ] ,]? <color-stop>[, <color-stop>]+)
+<side-or-corner> = [left | right] || [top | bottom]
+<color-stop> = <color> [ <length> | <percentage> ]?
+取值：
+下述值用来表示渐变的方向，可以使用角度或者关键字来设置：
+<angle>：
+用角度值指定渐变的方向（或角度）。
+to left：
+设置渐变为从右到左。相当于: 270deg
+to right：
+设置渐变从左到右。相当于: 90deg
+to top：
+设置渐变从下到上。相当于: 0deg
+to bottom：
+设置渐变从上到下。相当于: 180deg。这是默认值，等同于留空不写。
+<color-stop> 用于指定渐变的起止颜色：
+<color>：
+指定颜色。
+<length>：
+用长度值指定起止色位置。不允许负值
+<percentage>：
+用百分比指定起止色位置。
+说明：
+用线性渐变创建图像。
+如果想创建以对角线方式渐变的图像，可以使用 to top left 这样的多关键字方式来实现。
+用默认的渐变方向绘制一个最简单的线性渐变
+示例代码：
+
+（图一）
+linear-gradient(#fff, #333);
+linear-gradient(to bottom, #fff, #333);
+linear-gradient(to top, #333, #fff);
+linear-gradient(180deg, #fff, #333);
+linear-gradient(to bottom, #fff 0%, #333 100%);
+以上几句代码都可以实现如（图一）的渐变效果
+                        </code>
+
+                </pre>
+                        <div class="pre">
+dfdfdfdfdfdfdfldjfkdjlfdkfjdljfdkfjdlfkjdlfj
+                </div>
+            </div>
+
+        </div>
+        <button type="button" id="btn" class="btn btn-default">改变items</button>
+        <button type="button" id="btn1" class="btn btn-default">改变selectedIndex</button>
+    </div>
+    <script>
+     
+    </script>
+</body>
+
+</html>
