@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>css3骰子</title>
+    <meta charset="utf-8"/>
+    <style>
+    *{margin:0;padding:0;}
+    body{background-color: #D3D3D3;}
+    #diceWapper{
+        -webkit-perspective: 800;
+        -webkit-perspective-origin: 50% 50%;
+        width: 200px;
+        height: 200px;
+        margin: 200px auto;
+    }
+
+    #dice{
+        width: 90px;
+        height: 90px;
+        position: relative;
+        -webkit-transform-style:preserve-3d;
+    }
+
+    .page{
+        -webkit-transition: -webkit-transform 1s linear;
+        position:absolute;
+        width: 90px;
+        height: 90px;
+        background-color: #F8F8FF;
+    }
+
+    #two {
+        -webkit-transform-origin:right;
+        -webkit-transform: rotateY(-90deg);
+    }
+
+    #three {
+        -webkit-transform-origin:bottom;
+        -webkit-transform: rotateX(90deg);
+    }
+
+    #four {
+        -webkit-transform-origin:top;
+        -webkit-transform: rotateX(-90deg);
+    }
+
+    #five {
+        -webkit-transform-origin:left;
+        -webkit-transform: rotateY(90deg);
+    }
+
+    #six {
+        -webkit-transform: translateZ(-90px);
+    }
+
+    .point{
+        width: 20px;
+        height: 20px;
+        box-sizing:border-box;
+        margin: 5px;
+        border-radius:20px;
+        border:2px solid #d7d7d7;
+        background-color: #FF4040;
+        position: absolute;
+    }
+
+    #one .first{left:30px;top:30px;}
+
+    #two .first{left:30px;top:15px;}
+
+    #two .second{left:30px;top:45px;}
+
+    #three .first{left:0px;top:0px;}
+
+    #three .second{left:30px;top:30px;}
+
+    #three .third{left:60px;top:60px;}
+
+    #four .first{left:15px;top:15px;}
+
+    #four .second{left:45px;top:15px;}
+
+    #four .third{left:15px;top:45px;}
+
+    #four .fourth{left:45px;top:45px;}
+
+    #five .first{left:15px;top:15px;}
+
+    #five .second{left:45px;top:15px;}
+
+    #five .third{left:15px;top:45px;}
+
+    #five .fourth{left:45px;top:45px;}
+
+    #five .fifth{left:30px;top:30px;}
+
+    #six .first{left:15px;top:0px;}
+
+    #six .second{left:45px;top:0px;}
+
+    #six .third{left:15px;top:30px;}
+
+    #six .fourth{left:45px;top:30px;}
+
+    #six .fifth{left:15px;top:60px;}
+
+    #six .sixth{left:45px;top:60px;}
+
+    #controler{
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    .way{width: 150px;display: inline-block;}
+    input:range{width: 150px;display: inline-block;}
+    </style>
+
+    <script type="text/javascript">
+    function rotate(){
+        var x = document.getElementById("rotateX").value;
+        var y = document.getElementById("rotateY").value;
+        var z = document.getElementById("rotateZ").value;
+        document.getElementById('dice').style.webkitTransform = "rotateX("+x+"deg) rotateY("+y+"deg) rotateZ("+z+"deg)";
+
+        document.getElementById('xValue').innerText = x;
+        document.getElementById('yValue').innerText = y;
+        document.getElementById('zValue').innerText = z;
+    }
+    </script>
+</head>
+<body>
+    <div id="diceWapper">
+        <div id="dice">
+            <div id="one" class="page">
+                <div class="point first"></div>
+            </div>
+            <div id="two" class="page">
+                <div class="point first"></div>
+                <div class="point second"></div>
+            </div>
+            <div id="three" class="page">
+                <div class="point first"></div>
+                <div class="point second"></div>
+                <div class="point third"></div>
+            </div>
+            <div id="four" class="page">
+                <div class="point first"></div>
+                <div class="point second"></div>
+                <div class="point third"></div>
+                <div class="point fourth"></div>
+            </div>
+            <div id="five" class="page">
+                <div class="point first"></div>
+                <div class="point second"></div>
+                <div class="point third"></div>
+                <div class="point fourth"></div>
+                <div class="point fifth"></div>
+            </div>
+            <div id="six" class="page">
+                <div class="point first"></div>
+                <div class="point second"></div>
+                <div class="point third"></div>
+                <div class="point fourth"></div>
+                <div class="point fifth"></div>
+                <div class="point sixth"></div>
+            </div>
+        </div>        
+    </div>
+
+    <div id="controler">
+        <div class="direction">
+            <span class="way">X 方向：<span id="xValue">0</span>度</span><input type="range" id="rotateX" min="-360" max="360" value="0" onchange="rotate()" />
+        </div>
+        <div class="direction">
+            <span class="way">Y 方向：<span id="yValue">0</span>度</span><input type="range" id="rotateY" min="-360" max="360" value="0" onchange="rotate()" />
+        </div>
+        <div class="direction">
+            <span class="way">Z 方向：<span id="zValue">0</span>度</span><input type="range" id="rotateZ" min="-360" max="360" value="0" onchange="rotate()" />
+        </div>
+    </div>
+</body>
+</html>
