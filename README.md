@@ -14,6 +14,8 @@
 
 . <a href="http://www.cnblogs.com/CandyManPing/p/5517327.html" target="_blank">水平居中垂直居中</a>
 
+. [CSS为之高度垂直居中](http://www.cnblogs.com/rubylouvre/archive/2010/07/08/1774025.html)
+
 . <a href="http://hslpicker.com/#43a34f,0.9" target="_blank">HLSA</a>
 
 . [loading](https://zhuanlan.zhihu.com/p/24464355?refer=itlion114)
