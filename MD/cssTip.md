@@ -16,6 +16,8 @@
 但无论是width:100%还是auto，其计算的参照都是父级内容区width值，而非总宽度值.
 
 - box-sizing: border-box; box-sizing: content-box;
+
+- border-collapse:collapse; 有些table显示的时候，下边界消失去掉此属性可以解决（但是不知道为什么） ，或者table设为display：inline-block （此举可能影响布局）
    
 
 	  
