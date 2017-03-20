@@ -1,8 +1,24 @@
 # 一些关于CSS的终结
+## 长度单位
+PPI（pixels per inch)像素密度 DPI(DOT per inch)// 莫种程度上说ppi&dpi 一个意思
 
+DPI用来表示输出设备的输出精度，如打印机，显示器
+
+DPI表示的是 像点/英寸（每英寸长度上有多少个打印点或像点）
+
+PPI用来表示输入设备的输入精度，如扫描仪，数码相机
+
+PPI表示的是　像素/英寸（每英寸长度上有多少个像素）
+
+像点和像素关系是这样的，一个像点可以是一个或几个像素，一个像素也可以是一个或几个像点， 比如我们打印一张分辨率为100PPI的照片，打印机的打印分辨率设为300DPI，这时三个打印点表现一个像素，如果我们打印一张600PPI的照片， 同样以300DPI来打印这时一个打印点表现两个像素。
+
+输出尺寸= 像素/DPI
+
+一般显示器 96ppi 96 像素一英寸（48/2.54~=19 1920/96~=20 有点对不上呀囧）
 ## inline-block
 
 - inline-block element 是块级元素跟行内元素的混合。 
+## BFC
 
 ## 3D转换
 
@@ -29,4 +45,34 @@ perspective-origin（透视的观察点所在位置）
 transoform-style 子元素是否继承元素的3D转换（即在父元素的基础上转换）
 
 
-            
+# Tips
+       汇总平时遇见的css问题
+
+- z-index:0 时可以生成 stacking context 而 auto 不稳
+
+- table td 的高度相当于 min-height 的作用
+
+- calc  margin: 1em calc(50% - 450px);
+
+- attr  a:after {  content: attr(title);font-size: 12px;} //目前只能运用于伪元素
+
+- width:100%;与width:auto;的区别<div><p>*****</p></div>
+如果是p的width:100%，则说明p的width会得到980px就已经充满div区域，然后自己又有padding，所以会超出div。
+而当width:auto时它是总体宽度（包括width，margin,padding,border）等于父级宽度（width，不包含父级的margin,padding,border），所以如果padding已经左右占去10px的空间，那么width给的值就是960px。
+但无论是width:100%还是auto，其计算的参照都是父级内容区width值，而非总宽度值.
+
+- box-sizing: border-box; box-sizing: content-box;
+
+- border-collapse:collapse; 有些table显示的时候，下边界消失去掉此属性可以解决（但是不知道为什么） ，或者table设为display：inline-block （此举可能影响布局）;
+
+- button::before { content: ''; position: absolute; top: -10px; right: -10px; bottom: -10px; left: -10px;} 绝对定位可以控制元素大小。
+   
+
+# 参考链接
+
+- [PPI&DPI](http://blog.csdn.net/wuyao721/article/details/5286753)
+- [bootsrap清楚浮动原理](https://segmentfault.com/a/1190000008424822)
+- [CSS2.2](https://www.w3.org/TR/CSS22/)
+- [BFC](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)	  
+	
+
