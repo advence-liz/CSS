@@ -19,7 +19,12 @@ PPI表示的是　像素/英寸（每英寸长度上有多少个像素）
 
 - inline-block element 是块级元素跟行内元素的混合。 
 ## BFC
-
+## 属性选择器
+- p[class~="warning"]   class="urgent warning"  属性以空格为分隔的值中包含 xxx
+- p[class*="win"]       class="window" 包含子串
+- [foo^="bar"]
+- [foo$="bar"]
+- [att|="val"]     val or 以 -val 开头
 ## 3D转换
 
 - translate（平移） ，rotelate（旋转） ，scale（缩放）transform添加的动画效果的元素依然占据原来的位置（应该是转换的元素stacking context 比较高）transition改变的width&height 影响布局
