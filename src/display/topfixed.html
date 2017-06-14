@@ -10,38 +10,47 @@
     <link href="http://cdn.bootcss.com/bootstrap/3.0.0/css/bootstrap.css" rel="stylesheet">
     <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
     <style>
-        .wrapper {
-           
+    html,body{
+        height: 100%;
+    }
+    body{
+        /*padding: 5px;*/
+        /*overflow: hidden;*/
+    }
+    .wrapper {
+
             min-height: 500px;
-            margin: 1em calc(50% - 450px);
+            margin: 100px calc(50% - 450px);
             background: beige;
-        
         }
-        
+
         .footer {
-        
+
             min-height: 50px;
             background: lightsteelblue;
             margin: 1em calc(50% - 450px);
         }
-        
+
         .header {
-        
-            margin: 1em calc(50% - 450px);
-            background:yellowgreen;
+
+            position: fixed;
             min-height: 100px;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: aliceblue;
         }
-   
+    
     </style>
 </head>
 
-<body>
+<body class="clearfix">
     <header class="header">
         <a href=" https://advence-liz.github.io/GUI/">header</a>
     </header>
     <article class="wrapper">
-<span class="mq-textarea"><textarea autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" x-palm-disable-ste-all="true"></textarea></span>
-    
+      wrapper
+
     </article>
     <footer class="footer">
         footer
