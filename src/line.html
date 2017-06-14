@@ -12,7 +12,7 @@
     <style>
         .wrapper {
            
-            min-height: 500px;
+            min-height: 100px;
             margin: 1em calc(50% - 450px);
             background: beige;
         
@@ -34,15 +34,17 @@
         row,column{
             display: block;
         }
-        button{
-            position: relative;
-        }
-        button::before {
-        content: '';
-        position: absolute;
-        top: -10px; right: -10px;
-        bottom: -10px; left: -10px;
-}
+       .super{
+            /*感觉这个super 就是不同浏览器给默认的值 相当于 5px 也可能使用百分百，就是不能保证浏览器的一致性*/
+           vertical-align: super;
+       }
+       .sub{
+           vertical-align: sub;
+       }
+       .line{
+        line-height: 1;
+       }
+       
     </style>
 </head>
 
@@ -51,18 +53,14 @@
         <a href=" https://advence-liz.github.io/GUI/">header</a>
     </header>
     <article class="wrapper">
-
-        <row class="row">
-
-            <column class="col-md-12">
-
-                <button>
-                 click
-             </button>
-
-            </column>
-
-        </row>
+       <h2>行内元素行为</h2>
+       <p>
+         容器元素只能控制font-size line-height 而其中元素默认居中，其它的特性控制容器中内联元素  默认垂直方向 vertical-align: baseline;,然后向上下线基于baseline 平移
+         内联元素大小不受容器限制，而也不会影响容器大小。
+       </p>
+       <p class="line"><span class="super">super</span>liz<span class="sub">sub</span></p>
+       <p class="line">lizzzzzzzzzzzzzzzzzzz</p>
+      
     </article>
     <footer class="footer">
         footer
