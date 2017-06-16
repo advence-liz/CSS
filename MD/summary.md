@@ -17,7 +17,7 @@ PPI表示的是　像素/英寸（每英寸长度上有多少个像素）
 一般显示器 96ppi 96 像素一英寸（48/2.54~=19 1920/96~=20 有点对不上呀囧）
 ## inline-block
 
-- inline-block element 是块级元素跟行内元素的混合。 
+- inline-block element 是块级元素跟行内元素的混合 //.一些特殊的用法可能影响表现        margin: 1em calc(50% - 450px);  不知为何搞的 inlne-block 内部的 block 中文字看不见了
 ## BFC
 ## 属性选择器
 - p[class~="warning"]   class="urgent warning"  属性以空格为分隔的值中包含 xxx
