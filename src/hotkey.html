@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hotkey</title>
+    <link href='http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css' rel='stylesheet'>
+    <script src='http://cdn.bootcss.com/jquery/3.0.0/jquery.js'></script>
+    <script src='https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js'></script>
+    <script src="../lib/hotkeys.js"></script>
+    <script src="js/HotkeysManager.js"></script>
+    <style>
+        *[data-flag]::after {
+            content: attr(data-flag);
+            position: absolute;
+            visibility: hidden;
+            top: 100%;
+            color: red;
+            background: lightcyan;
+            /* right: -10px;
+            bottom: -10px;
+            left: -10px; */
+        }
+
+        *.active[data-flag]::after {
+            content: attr(data-flag);
+            position: absolute;
+            top: 100%;
+            visibility: visible;
+
+            /* right: -10px;
+            bottom: -10px;
+            left: -10px; */
+        }
+
+        *[data-flag] {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body style="font-size:30px;">
+    <h1>hotkey</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>scope1</h2>
+                <section>
+                    <li>
+                        <a data-flag="A" data-next="scope2" data-scope="scope1" href="javascript:;">hot</a>
+                    </li>
+                    <li>
+                        <a data-flag="B" data-next="scope2" data-scope="scope1" href="javascript:;">hothothot</a>
+                    </li>
+
+                </section>
+                <h2>scope2</h2>
+                <section>
+                    <li>
+                        <a data-flag="A" data-next="scope31" data-scope="scope2" href="javascript:;">hot</a>
+                    </li>
+                    <li>
+                        <a data-flag="B" data-next="scope32" data-scope="scope2" href="javascript:;">hothothot</a>
+                    </li>
+
+                </section>
+                <h2>scope3</h2>
+                <section>
+
+                    <li data-flag="A1" data-next="a2" data-scope="scope31"><a>scope31</a></li>
+                    <li data-flag="A2" data-next="a2" data-scope="scope31"><a>scope31</a></li>
+                    <li data-flag="A3" data-next="a2" data-scope="scope31"><a>scope31</a></li>
+                    <li data-flag="A4" data-next="a2" data-scope="scope32"><a>scope32</a></li>
+                    <li data-flag="A5" data-next="a2" data-scope="scope32"><a>scope32</a></li>
+
+                </section>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
