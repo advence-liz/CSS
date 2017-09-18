@@ -39,7 +39,7 @@ var hotkeysManager = new HotkeysManager('ScopeA');
 hotkeysManager.setRootScope("ScopeB")
 
 ```
-### [Online DEMO](../src/hotkey.html)
+### [Online DEMO](https://advence-liz.github.io/CSS/src/hotkey.html)
 
 ## Hotkey 类图
 ![Hotkey_class.svg](../pic/hotkeyclass.svg)
