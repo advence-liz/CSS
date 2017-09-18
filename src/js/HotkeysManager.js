@@ -84,9 +84,20 @@ function HotkeysManager(scope) {
             this.$flagList.toggleClass('active', false);
             this.hotkeyMode(false);
         }
+        /**
+         * data-flag 元素click触发如果不阻止事件冒泡，那么 docment的click 就会触发hotMode就会变为false
+         * 所以只能让大家在自己事件上阻止冒泡，我要是直接阻止冒泡我担心这个元素并不是触发事件的元素
+         * 根据属性配置是否阻止事件冒泡
+         */
         function clickFlag(e) {
-            this.setScope(e.target.dataset.next);
-            return false;
+            if(this.hotkeyMode()&&e.target.dataset.next){
+                this.setScope(e.target.dataset.next);
+            }else{
+                this.$flagList.toggleClass('active', false);
+                this.hotkeyMode(false);
+            }
+            
+            return e.target.dataset.bubble==="true"? true:false;
         }
     };
     this._init = function () {
@@ -117,7 +128,7 @@ function HotkeysManager(scope) {
     }
 
 }
-var hotkeysManager = new HotkeysManager('scope1');
+var hotkeysManager = new HotkeysManager('ScopeA');
 
 
 

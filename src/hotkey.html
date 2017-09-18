@@ -18,21 +18,13 @@
             visibility: hidden;
             top: 100%;
             color: red;
-            background: lightcyan;
-            /* right: -10px;
-            bottom: -10px;
-            left: -10px; */
+            top:10px;
+            left: 40%;
+           
         }
 
         *.active[data-flag]::after {
-            content: attr(data-flag);
-            position: absolute;
-            top: 100%;
             visibility: visible;
-
-            /* right: -10px;
-            bottom: -10px;
-            left: -10px; */
         }
 
         *[data-flag] {
@@ -46,34 +38,32 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h2>scope1</h2>
+                <h2>ScopeA</h2>
                 <section>
                     <li>
-                        <a data-flag="A" data-next="scope2" data-scope="scope1" href="javascript:;">hot</a>
+                        <a data-flag="A" data-next="ScopeB" data-scope="ScopeA" href="javascript:;">hot</a>
                     </li>
                     <li>
-                        <a data-flag="B" data-next="scope2" data-scope="scope1" href="javascript:;">hothothot</a>
+                        <a data-flag="B" data-next="ScopeB" data-scope="ScopeA" href="javascript:;">hothothot</a>
                     </li>
 
                 </section>
-                <h2>scope2</h2>
+                <h2>ScopeB</h2>
                 <section>
                     <li>
-                        <a data-flag="A" data-next="scope31" data-scope="scope2" href="javascript:;">hot</a>
+                        <a data-flag="A" data-next="ScopeC" data-scope="ScopeB" data-bubble="false" href="javascript:;">hot</a>
                     </li>
                     <li>
-                        <a data-flag="B" data-next="scope32" data-scope="scope2" href="javascript:;">hothothot</a>
+                        <a data-flag="B" data-next="scope32" data-scope="ScopeB" data-bubble="true" href="javascript:;">not stopBubble</a>
                     </li>
 
                 </section>
-                <h2>scope3</h2>
+                <h2>ScopeC</h2>
                 <section>
 
-                    <li data-flag="A1" data-next="a2" data-scope="scope31"><a>scope31</a></li>
-                    <li data-flag="A2" data-next="a2" data-scope="scope31"><a>scope31</a></li>
-                    <li data-flag="A3" data-next="a2" data-scope="scope31"><a>scope31</a></li>
-                    <li data-flag="A4" data-next="a2" data-scope="scope32"><a>scope32</a></li>
-                    <li data-flag="A5" data-next="a2" data-scope="scope32"><a>scope32</a></li>
+                    <li data-flag="A"  data-scope="ScopeC"><a>ScopeC</a></li>
+                    <li data-flag="B"  data-scope="ScopeC"><a>ScopeC</a></li>
+                    <li data-flag="C"  data-scope="ScopeC"><a>ScopeC</a></li>
 
                 </section>
             </div>
