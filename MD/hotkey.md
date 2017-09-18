@@ -5,7 +5,7 @@
 - 当用户键入 指定hotkey 另外的一些元素 浮现 tooltip，之前的元素tooltip 消失，即上一Scope 元素 tooltip 隐藏，当前Scope 元素tooltip 浮现
 - 当任意时刻Click 页面 hotkeyMode 关闭，当再次Ctrl+Alt+Z hotkeyMode 激活，此时一些元素tooltip 浮现，这里你可能发现个问题 当我激活hotkeyMode的时候显示那个Scope中的所有元素呢？
 在这里提出另外一个概念RootScope 当激活hotMode 时显示的为当前RootScope 中的内容，RootScope跟其他Scope没什么区别我们只是将某一个Scope设定为RootScope 而已，而且RootScope还可以随时改变。
-- 可以具体参考下文的流程图
+- 可以具体参考下文的流程图或者最下面的动图
 ## Hotkey Class
 上文提出了Scope 概念，那我们如何表示一个hotkey 元素，每个hotkey 元素相对于一个 Hotky Class 的实例。
 
@@ -51,3 +51,5 @@ scope 中保函多个Hotkey instance
 先关注主流程，随后再关注分支
 
 ![](../pic/hotkeys.svg)
+## hotkey GIF
+![hotkey.gif](../pic/hotkey.gif)
