@@ -11,7 +11,7 @@
 
 Hotkey Class示意图见下图：其包涵 flag,scope,next,bubble 四个属性
 
-- falg：定义hotkey 要显示的提示（标题）
+- flag：定义hotkey 要显示的提示（标题）
 - scope：定义当前Scope
 - next：当前hotkey 被激活时进入的ChildScope
 - bubble:事件冒泡（默认阻止事件冒泡）
