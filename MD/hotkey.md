@@ -42,7 +42,7 @@ hotkeysManager.setRootScope("ScopeB")
 ### [Online DEMO](../src/hotkey.html)
 
 ## Hotkey 类图
-![Hotkey_class.svg](../pic/Hotkey_class.svg)
+![Hotkey_class.svg](../pic/hotkeyclass.svg)
 
 ## Hotkey instance 与 Scope 的关系
 scope 中保函多个Hotkey instance
