@@ -40,6 +40,7 @@ hotkeysManager.setRootScope("ScopeB")
 
 ```
 ### [Online DEMO](../src/hotkey.html)
+
 ## Hotkey 类图
 ![Hotkey_class.svg](../pic/Hotkey_class.svg)
 
