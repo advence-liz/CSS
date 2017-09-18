@@ -9,7 +9,7 @@
 ## Hotkey Class
 上文提出了Scope 概念，那我们如何表示一个hotkey 元素，每个hotkey 元素相对于一个 Hotky Class 的实例。
 
-Hotkey Class如图所示：其包涵 flag,scope,next,bubble 四个属性
+Hotkey Class示意图见下图：其包涵 flag,scope,next,bubble 四个属性
 
 - falg：定义hotkey 要显示的提示（标题）
 - scope：定义当前Scope
