@@ -45,8 +45,10 @@ hotkeysManager.setRootScope("ScopeB")
 ![Hotkey_class.svg](../pic/hotkeyclass.svg)
 
 ## Hotkey instance 与 Scope 的关系
-scope 中保函多个Hotkey instance
+### scope 中包涵多个Hotkey instance
 ![](../pic/scope.svg)
+### Scope Tree
+![](../pic/hotkeyscopetree.svg)
 ## HotKey System flow 
 先关注主流程，随后再关注分支
 
