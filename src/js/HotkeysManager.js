@@ -51,21 +51,15 @@ function HotkeysManager(scope) {
                 this.hotkeys_arr.indexOf(e.key) > -1 ?
                     null :
                     this.hotkeys_arr.push(e.key);
-            } else {
-                //开启hotkeyMode
-                if (e.keyCode === 90 && e.altKey && e.ctrlKey) {
-                    this.hotkeyMode(true);
-                    this.setScope(this.rootScope);
-                }
             }
-
-
-            // this.hotkeys_arr.indexOf(e.keyCode) > -1 ?
-            //     null :
-            //     this.hotkeys_arr.push(e.keyCode);
+            //开启hotkeyMode 经测试感觉keydown的时候开学hotkeyMode 比较好
+            else if (e.keyCode === 90 && e.altKey && e.ctrlKey) {
+                this.hotkeyMode(true);
+                this.setScope(this.rootScope);
+            }
         }
         function keyup(e) {
-            
+
             if (this.hotkeyMode()) {
                 var keyCombination = this.hotkeys_arr.join('').toUpperCase();
                 try {
@@ -77,6 +71,13 @@ function HotkeysManager(scope) {
                 }
                 this.hotkeys_arr.length = 0;
             }
+            //开启hotkeyMode
+            // else if (e.keyCode === 90 && e.altKey && e.ctrlKey) {
+                
+            //     this.hotkeyMode(true);
+            //     this.setScope(this.rootScope);
+            // }
+            //阻止document click 触发
             return false;
         }
         //当点击页面任何位置移除$flagList激活状态
@@ -90,14 +91,14 @@ function HotkeysManager(scope) {
          * 根据属性配置是否阻止事件冒泡
          */
         function clickFlag(e) {
-            if(this.hotkeyMode()&&e.target.dataset.next){
+            if (this.hotkeyMode() && e.target.dataset.next) {
                 this.setScope(e.target.dataset.next);
-            }else{
+            } else {
                 this.$flagList.toggleClass('active', false);
                 this.hotkeyMode(false);
             }
-            
-            return e.target.dataset.bubble==="true"? true:false;
+
+            return e.target.dataset.bubble === "true" ? true : false;
         }
     };
     this._init = function () {
@@ -116,6 +117,9 @@ function HotkeysManager(scope) {
         this._initEvent = null;
     };
     this._init();
+    /**
+     * 为了构建出 key 值为 flag 的对象
+     */
     function compile() {
         var arr = [];
         arr.push("var obj= {");
@@ -130,7 +134,9 @@ function HotkeysManager(scope) {
 }
 var hotkeysManager = new HotkeysManager('ScopeA');
 
-
+ $(document).on("click", '[data-flag]',function(e){
+   console.log(e.target.dataset.flag);
+ });
 
 /**
  * 1 ctrl+alt+z when keyup 展示当前 RootScope
