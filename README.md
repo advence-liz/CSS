@@ -1,40 +1,46 @@
 # CSS
 为了CSS学习与研究
-## GUID 
+## REF
+- [注释](http://www.jianshu.com/p/bd1f551a1915)
 
-. <a href="http://www.cnblogs.com/coco1s/category/833837.html" target="_blank">CSS-进阶--ChokCoco</a>
+```
+/**
+ *               ii.                                         ;9ABH,          
+ *              SA391,                                    .r9GG35&G          
+ *              &#ii13Gh;                               i3X31i;:,rB1         
+ *              iMs,:,i5895,                         .5G91:,:;:s1:8A         
+ *               33::::,,;5G5,                     ,58Si,,:::,sHX;iH1        
+ *                Sr.,:;rs13BBX35hh11511h5Shhh5S3GAXS:.,,::,,1AG3i,GG        
+ *                .G51S511sr;;iiiishS8G89Shsrrsh59S;.,,,,,..5A85Si,h8        
+ *               :SB9s:,............................,,,.,,,SASh53h,1G.       
+ *            .r18S;..,,,,,,,,,,,,,,,,,,,,,,,,,,,,,....,,.1H315199,rX,       
+ *          ;S89s,..,,,,,,,,,,,,,,,,,,,,,,,....,,.......,,,;r1ShS8,;Xi       
+ *        i55s:.........,,,,,,,,,,,,,,,,.,,,......,.....,,....r9&5.:X1       
+ *       59;.....,.     .,,,,,,,,,,,...        .............,..:1;.:&s       
+ *      s8,..;53S5S3s.   .,,,,,,,.,..      i15S5h1:.........,,,..,,:99       
+ *      93.:39s:rSGB@A;  ..,,,,.....    .SG3hhh9G&BGi..,,,,,,,,,,,,.,83      
+ *      G5.G8  9#@@@@@X. .,,,,,,.....  iA9,.S&B###@@Mr...,,,,,,,,..,.;Xh     
+ *      Gs.X8 S@@@@@@@B:..,,,,,,,,,,. rA1 ,A@@@@@@@@@H:........,,,,,,.iX:    
+ *     ;9. ,8A#@@@@@@#5,.,,,,,,,,,... 9A. 8@@@@@@@@@@M;    ....,,,,,,,,S8    
+ *     X3    iS8XAHH8s.,,,,,,,,,,...,..58hH@@@@@@@@@Hs       ...,,,,,,,:Gs   
+ *    r8,        ,,,...,,,,,,,,,,.....  ,h8XABMMHX3r.          .,,,,,,,.rX:  
+ *   :9, .    .:,..,:;;;::,.,,,,,..          .,,.               ..,,,,,,.59  
+ *  .Si      ,:.i8HBMMMMMB&5,....                    .            .,,,,,.sMr
+ *  SS       :: h@@@@@@@@@@#; .                     ...  .         ..,,,,iM5
+ *  91  .    ;:.,1&@@@@@@MXs.                            .          .,,:,:&S
+ *  hS ....  .:;,,,i3MMS1;..,..... .  .     ...                     ..,:,.99
+ *  ,8; ..... .,:,..,8Ms:;,,,...                                     .,::.83
+ *   s&: ....  .sS553B@@HX3s;,.    .,;13h.                            .:::&1
+ *    SXr  .  ...;s3G99XA&X88Shss11155hi.                             ,;:h&,
+ *     iH8:  . ..   ,;iiii;,::,,,,,.                                 .;irHA  
+ *      ,8X5;   .     .......                                       ,;iihS8Gi
+ *         1831,                                                 .,;irrrrrs&@
+ *           ;5A8r.                                            .:;iiiiirrss1H
+ *             :X@H3s.......                                .,:;iii;iiiiirsrh
+ *              r#h:;,...,,.. .,,:;;;;;:::,...              .:;;;;;;iiiirrss1
+ *             ,M8 ..,....,.....,,::::::,,...         .     .,;;;iiiiiirss11h
+ *             8B;.,,,,,,,.,.....          .           ..   .:;;;;iirrsss111h
+ *            i@5,:::,,,,,,,,.... .                   . .:::;;;;;irrrss111111
+ *            9Bi,:,,,,......                        ..r91;;;;;iirrsss1ss1111
+ */
 
-. <a href="https://github.com/josephschmitt/Clamp.js" target="_blank">Clamp</a>
-
-. <a href="http://zhaolei.info/2014/01/04/css-preprocessor-and-postprocessor/#more" target="_blank">CSS 预处理器与 CSS 后处理器</a>
-
-. <a href="http://www.cnblogs.com/lhb25/category/146075.html" target="_blank">前端里博客</a>
-
-. <a href="http://www.yyyweb.com/" target="_blank">前端里</a>
-
-. <a href="http://www.cnblogs.com/CandyManPing/p/5517327.html" target="_blank">水平居中垂直居中</a>
-
-. [CSS为之高度垂直居中](http://www.cnblogs.com/rubylouvre/archive/2010/07/08/1774025.html)
-
-. <a href="http://hslpicker.com/#43a34f,0.9" target="_blank">HLSA</a>
-
-. [loading](https://zhuanlan.zhihu.com/p/24464355?refer=itlion114)
-
-. [javscrpt&ccs](https://zhuanlan.zhihu.com/p/24162642)
-
-. [css3button](http://mp.weixin.qq.com/s?__biz=MjM5MDk5MzE2Mw%3D%3D&mid=2527294515&idx=1&sn=ae0f5d215788ea492b217b32c287c501&chksm=b5eb8a57829c0341dc16ca158ccbefc3d5bb4596f2f73516ebb485aa6b9673a1f9f0b1ec292e&mpshare=1&scene=1&srcid=1213nYC6j18lveohWCs4wuXs)
-
-. [CSS转盘抽奖](https://segmentfault.com/r/1250000008053580?shareId=1210000008053592)
-
-. [在线图片滤镜](http://filter.awesomes.cn/)
-## Index
-
-- [CSS伪元素before&after用法](./src/beforeafter.html)
-
-- [boxShadow](./src/boxShadow.html)
-
-- [骰子合集](./src/dices.html)
-
-- [stacking context](./src/stacking.html)
-
-- [tooltip](./src/visible.html)
