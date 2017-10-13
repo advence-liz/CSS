@@ -6,6 +6,7 @@ out/
 test/
 #dist/
 build/
+app/
 .vscode/
 *.log
 bower_components/

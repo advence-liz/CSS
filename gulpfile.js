@@ -5,6 +5,10 @@ const browserSync = require('browser-sync');
 const reload = browserSync.reload;
 const path = require("path");
 
+gulp.task('html', function () {
+  return gulp.src([path.join('src', 'favicon.ico'), path.join('src', 'index.html')])
+    .pipe(gulp.dest('app'));
+});
 gulp.task('js', function () {
   return gulp.src(path.join('src', 'index.js'))
     .pipe(gulp.dest('app'))
@@ -20,7 +24,7 @@ gulp.task('less', function () {
 });
 
 // 监视 Sass 文件的改动，如果发生变更，运行 'sass' 任务，并且重载文件
-gulp.task('start', ['less', 'js'], function () {
+gulp.task('start', ['less', 'js','html'], function () {
   browserSync({
     server: {
       baseDir: 'app'
@@ -29,5 +33,5 @@ gulp.task('start', ['less', 'js'], function () {
 
   gulp.watch('src/*.less', ['less']);
   gulp.watch('src/*.js', ['js']);
-  gulp.watch('app/*.html',reload);
+  gulp.watch('app/*.html', reload);
 });
