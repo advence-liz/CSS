@@ -33,5 +33,5 @@ gulp.task('start', ['less', 'js','html'], function () {
 
   gulp.watch('src/*.less', ['less']);
   gulp.watch('src/*.js', ['js']);
-  gulp.watch('app/*.html', reload);
+  gulp.watch('src/*.html', ['html',reload]);
 });
