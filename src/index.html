@@ -1,78 +1,114 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="favicon.ico" />
-  <link rel="bookmark" href="favicon.ico" />
-  <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hotkey</title>
+    <link href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css' rel='stylesheet'>
+    <script src='https://cdn.bootcss.com/jquery/3.0.0/jquery.js'></script>
+    <script src='https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js'></script>
+    <!-- <script src="../lib/hotkeys.js"></script> -->
+    <script src="HotkeysManager.js"></script>
+    <style>
+        *[data-flag]::after {
+            content: attr(data-flag);
+            position: absolute;
+            visibility: hidden;
+            color: red;
+            top: 20px;
+            left: 40%;
+            background: gainsboro;
+            height: 30px;
+            line-height: 30px;
+        }
 
-  <title>CSS</title>
+        *.active[data-flag]::after {
+            visibility: visible;
+        }
+
+        *[data-flag] {
+            position: relative;
+        }
+    </style>
 </head>
-<style>
-  .calendar__message {
-    position: relative;
-  }
 
-  .calendar__message .calendar__tooltip {
-    visibility: hidden;
-    background-color: #fff;
-    border-radius: 2px;
-    border-color: #FFCC6F;
-    border-style: solid;
-    border-width: 1px;
-    padding: 1px;
-    position: absolute;
-    overflow: visible;
-    z-index: 1;
-  }
+<body style="font-size:20px;">
+    <h1>hotkey</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>ScopeA</h2>
+                <section>
+                    <li>
+                        <a data-flag="A" data-next="ScopeB" data-scope="ScopeA" href="javascript:;">Hotkey</a>
+                    </li>
+                    <li>
+                        <a data-flag="B" data-next="ScopeB" data-scope="ScopeA" href="javascript:;">Hotkey</a>
+                    </li>
 
-  .calendar__message:hover .calendar__tooltip {
-    visibility: visible;
-  }
+                </section>
+             
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                    <h2>ScopeB</h2>
+                    <p>当键入A是切换到ScopeC，当键入B切换到ScopeD</p>
+                    <section>
+                        <li>
+                            <a data-flag="A" data-next="ScopeC" data-scope="ScopeB" data-bubble="false" href="javascript:;">Hotkey</a>
+                        </li>
+                        <li>
+                            <a data-flag="B" data-next="ScopeD" data-scope="ScopeB"  href="javascript:;">not stopBubble</a>
+                        </li>
+    
+                    </section>
+            </div>
+            <div class="col-md-6">
+                    <h2>ScopeB</h2>
+                    <p>下面的元素没有阻止事件冒泡</p>
+                    <section>
+                        <li>
+                            <a data-flag="C" data-next="ScopeC" data-scope="ScopeB" data-bubble="true" href="javascript:;">Hotkey</a>
+                        </li>
+                        <li>
+                            <a data-flag="D" data-next="ScopeD" data-scope="ScopeB" data-bubble="true" href="javascript:;">not stopBubble</a>
+                        </li>
+    
+                    </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>ScopeC</h2>
+                <section>
 
-  dd,dt{
-  display: inline;
-}
-  dd+dt::before {
-    content: '\A';
-    white-space: pre;
-  }
+                    <li data-flag="CA" data-scope="ScopeC"><a>Hotkey</a></li>
+                    <li data-flag="CB" data-scope="ScopeD"><a>Hotkey</a></li>
+                    <li data-flag="C" data-next="ScopeA" data-scope="ScopeC"><a>Hotkey</a></li>
 
-  dd+dd::before {
-    content: ', ';
-    font-weight: normal;
-  }
-</style>
+                </section>
+            </div>
+            <div class="col-md-6">
+                <h2>ScopeD</h2>
+                <section>
 
-<body>
-  <pre>
-    <code>
-        "{"
-         time":"2017-10-22T16:00:21.000Z",
-        "text":"2017-10-23 00:00:21 (UTC+08:00)",
-        "id":"HAR20171023000021921069",
-        "planName":"Default Profile",
-        "state":"Failed"
-         }"
-    </code>
-  </pre>
-  <div class="calendar__message">
-      {iconAttr:state}{dateFormat:HH:mm:ss}
-    <dl class="calendar__tooltip">
-      <dt>Plan Name</dt>
-      <dd>...</dd>
-      <dt>Job ID</dt>
-      <dd>...</dd>
-      <dt>Status</dt>
-      <dd>...</dd>
-      <dt>Start Time</dt>
-      <dd>...</dd>
-    </dl>
-  </div>
+                    <li data-flag="DA" data-scope="ScopeD"><a>Hotkey</a></li>
+                    <li data-flag="DB" data-scope="ScopeD"><a>Hotkey</a></li>
+                    <li data-flag="D" data-next="ScopeA" data-scope="ScopeD"><a>Hotkey</a></li>
 
-  <script src="index.js"></script>
+                </section>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <script>
+
+    </script>
 </body>
 
 </html>

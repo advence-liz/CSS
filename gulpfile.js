@@ -6,11 +6,11 @@ const reload = browserSync.reload;
 const path = require("path");
 
 gulp.task('html', function () {
-  return gulp.src([path.join('src', 'favicon.ico'), path.join('src', 'index.html')])
+  return gulp.src([path.join('src', 'favicon.ico'), path.join('src', '*.html')])
     .pipe(gulp.dest('app'));
 });
 gulp.task('js', function () {
-  return gulp.src(path.join('src', 'index.js'))
+  return gulp.src(path.join('src', '*.js'))
     .pipe(gulp.dest('app'))
     .pipe(reload({ stream: true }));
 });
