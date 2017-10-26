@@ -1,49 +1,58 @@
-# CSS
-这个分支构建了一个，基于browser-sync 的热替换脚手架
-## REF
-- [注释](http://www.jianshu.com/p/bd1f551a1915)
-## 使用
+# Hotkey System
 
-npm start
+本文意在说明 hotkey 系统的实现，简单描述一下hotkey系统的行为：
+- 当用户键入 Ctrl+Alt+Z 时激活 hotkeyMode 页面上的一些元素就会浮现 tooltip(提示对应元素的hotkey 是什么) 这里我们提出第一个抽象概念Scope 此时浮现 tooltip 的元素处于同一个Scope 中。
+- 当用户键入 指定hotkey 另外的一些元素 浮现 tooltip，之前的元素tooltip 消失，即上一Scope 元素 tooltip 隐藏，当前Scope 元素tooltip 浮现
+- 当任意时刻Click 页面 hotkeyMode 关闭，当再次Ctrl+Alt+Z hotkeyMode 激活，此时一些元素tooltip 浮现，这里你可能发现个问题 当我激活hotkeyMode的时候显示那个Scope中的所有元素呢？
+在这里提出另外一个概念RootScope 当激活hotMode 时显示的为当前RootScope 中的内容，RootScope跟其他Scope没什么区别我们只是将某一个Scope设定为RootScope 而已，而且RootScope还可以随时改变。
+- 可以具体参考下文的流程图或者最下面的动图
+## Hotkey Class
+上文提出了Scope 概念，那我们如何表示一个hotkey 元素，每个hotkey 元素相对于一个 Hotky Class 的实例。
+
+Hotkey Class示意图见下图：其包涵 flag,scope,next,bubble 四个属性
+
+- flag：定义hotkey 要显示的提示（标题）
+- scope：定义当前Scope
+- next：当前hotkey 被激活时进入的ChildScope
+- bubble:事件冒泡（默认阻止事件冒泡）
+
+当然这里并不需要大家在javascript中逐个初始Hotkey instance,我只要在作为hotkey的元素中配置上对应的 html 属性即可
+```xml
+                <section>
+                    <li>
+                        <a data-flag="A" data-next="ScopeC" data-scope="ScopeB"  href="javascript:;">hot</a>
+                    </li>
+                    <li>
+                        <a data-flag="B" data-next="scope32" data-scope="ScopeB" data-bubble="true" href="javascript:;">not stopBubble</a>
+                    </li>
+
+                </section>
+```
+## HotkeysManager  
+HotkeysManager 即启动和管理Hotkey System 的类使用方法如下：
+
+```javascript
+//初始化 HotkeysManager 并设置RootScope 为ScopeA
+var hotkeysManager = new HotkeysManager('ScopeA');
+
+//当你想更改RootScope 时调用如下代码
+hotkeysManager.setRootScope("ScopeB")
 
 ```
-/**
- *               ii.                                         ;9ABH,          
- *              SA391,                                    .r9GG35&G          
- *              &#ii13Gh;                               i3X31i;:,rB1         
- *              iMs,:,i5895,                         .5G91:,:;:s1:8A         
- *               33::::,,;5G5,                     ,58Si,,:::,sHX;iH1        
- *                Sr.,:;rs13BBX35hh11511h5Shhh5S3GAXS:.,,::,,1AG3i,GG        
- *                .G51S511sr;;iiiishS8G89Shsrrsh59S;.,,,,,..5A85Si,h8        
- *               :SB9s:,............................,,,.,,,SASh53h,1G.       
- *            .r18S;..,,,,,,,,,,,,,,,,,,,,,,,,,,,,,....,,.1H315199,rX,       
- *          ;S89s,..,,,,,,,,,,,,,,,,,,,,,,,....,,.......,,,;r1ShS8,;Xi       
- *        i55s:.........,,,,,,,,,,,,,,,,.,,,......,.....,,....r9&5.:X1       
- *       59;.....,.     .,,,,,,,,,,,...        .............,..:1;.:&s       
- *      s8,..;53S5S3s.   .,,,,,,,.,..      i15S5h1:.........,,,..,,:99       
- *      93.:39s:rSGB@A;  ..,,,,.....    .SG3hhh9G&BGi..,,,,,,,,,,,,.,83      
- *      G5.G8  9#@@@@@X. .,,,,,,.....  iA9,.S&B###@@Mr...,,,,,,,,..,.;Xh     
- *      Gs.X8 S@@@@@@@B:..,,,,,,,,,,. rA1 ,A@@@@@@@@@H:........,,,,,,.iX:    
- *     ;9. ,8A#@@@@@@#5,.,,,,,,,,,... 9A. 8@@@@@@@@@@M;    ....,,,,,,,,S8    
- *     X3    iS8XAHH8s.,,,,,,,,,,...,..58hH@@@@@@@@@Hs       ...,,,,,,,:Gs   
- *    r8,        ,,,...,,,,,,,,,,.....  ,h8XABMMHX3r.          .,,,,,,,.rX:  
- *   :9, .    .:,..,:;;;::,.,,,,,..          .,,.               ..,,,,,,.59  
- *  .Si      ,:.i8HBMMMMMB&5,....                    .            .,,,,,.sMr
- *  SS       :: h@@@@@@@@@@#; .                     ...  .         ..,,,,iM5
- *  91  .    ;:.,1&@@@@@@MXs.                            .          .,,:,:&S
- *  hS ....  .:;,,,i3MMS1;..,..... .  .     ...                     ..,:,.99
- *  ,8; ..... .,:,..,8Ms:;,,,...                                     .,::.83
- *   s&: ....  .sS553B@@HX3s;,.    .,;13h.                            .:::&1
- *    SXr  .  ...;s3G99XA&X88Shss11155hi.                             ,;:h&,
- *     iH8:  . ..   ,;iiii;,::,,,,,.                                 .;irHA  
- *      ,8X5;   .     .......                                       ,;iihS8Gi
- *         1831,                                                 .,;irrrrrs&@
- *           ;5A8r.                                            .:;iiiiirrss1H
- *             :X@H3s.......                                .,:;iii;iiiiirsrh
- *              r#h:;,...,,.. .,,:;;;;;:::,...              .:;;;;;;iiiirrss1
- *             ,M8 ..,....,.....,,::::::,,...         .     .,;;;iiiiiirss11h
- *             8B;.,,,,,,,.,.....          .           ..   .:;;;;iirrsss111h
- *            i@5,:::,,,,,,,,.... .                   . .:::;;;;;irrrss111111
- *            9Bi,:,,,,......                        ..r91;;;;;iirrsss1ss1111
- */
+### [Online DEMO](https://advence-liz.github.io/CSS/src/hotkey.html)
 
+## Hotkey 类图
+![Hotkey_class.svg](pic/hotkeyclass.svg)
+
+## Hotkey instance 与 Scope 的关系
+### scope 中包涵多个Hotkey instance
+![](pic/scope.svg)
+### Scope Tree
+Scope 之间的关系看起来是一个tree，但也不全对因为子节点也可以指向父节点但是正常没有这种操作（或者称为一个像tree 一样的有向图更准确）
+![](pic/hotkeyscopetree.svg)
+## HotKey System flow 
+先关注主流程，随后再关注分支
+
+![](pic/hotkeys.svg)
+## hotkey GIF
+![hotkey.gif](pic/hotkey.gif)
