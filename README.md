@@ -30,16 +30,14 @@
 . [CSS转盘抽奖](https://segmentfault.com/r/1250000008053580?shareId=1210000008053592)
 
 . [在线图片滤镜](http://filter.awesomes.cn/)
-## Index
+
+## Index(感觉目前除了 3D骰子没有能看的)
 
 - [CSS伪元素before&after用法](https://advence-liz.github.io/CSS/src/beforeafter.html)
 
+- [3D骰子](https://advence-liz.github.io/CSS/src/3ddice.html)
+
 - [boxShadow](https://advence-liz.github.io/CSS/src/boxShadow.html)
-
-- [骰子合集](https://advence-liz.github.io/CSS/src/dices.html)
-
-- [3D骰子合集](https://advence-liz.github.io/CSS/src/3ddice.html)
 
 - [stacking context](https://advence-liz.github.io/CSS/src/stacking.html)
 
-- [tooltip](https://advence-liz.github.io/CSS/src/visible.html)
