@@ -3,7 +3,7 @@
 
 - [dev branch](https://github.com/advence-liz/CSS/tree/dev) 构建了一个 基于browersync 热替换较少架方便调试样式
 - [hotkey branch](https://github.com/advence-liz/CSS/tree/hotkey) 提供一个hotkey 解决方案
-## GUID 
+## REF 
 
 . <a href="http://www.cnblogs.com/coco1s/category/833837.html" target="_blank">CSS-进阶--ChokCoco</a>
 
@@ -32,12 +32,12 @@
 . [在线图片滤镜](http://filter.awesomes.cn/)
 ## Index
 
-- [CSS伪元素before&after用法](./src/beforeafter.html)
+- [CSS伪元素before&after用法](https://advence-liz.github.io/CSS/src/beforeafter.html)
 
-- [boxShadow](./src/boxShadow.html)
+- [boxShadow](https://advence-liz.github.io/CSS/src/boxShadow.html)
 
-- [骰子合集](./src/dices.html)
+- [骰子合集](https://advence-liz.github.io/CSS/src/dices.html)
 
-- [stacking context](./src/stacking.html)
+- [stacking context](https://advence-liz.github.io/CSS/src/stacking.html)
 
-- [tooltip](./src/visible.html)
+- [tooltip](https://advence-liz.github.io/CSS/src/visible.html)
