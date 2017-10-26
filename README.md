@@ -38,6 +38,8 @@
 
 - [骰子合集](https://advence-liz.github.io/CSS/src/dices.html)
 
+- [3D骰子合集](https://advence-liz.github.io/CSS/src/3ddice.html)
+
 - [stacking context](https://advence-liz.github.io/CSS/src/stacking.html)
 
 - [tooltip](https://advence-liz.github.io/CSS/src/visible.html)
