@@ -9,8 +9,11 @@ gulp.task('html', function () {
   return gulp.src([path.join('src', 'favicon.ico'), path.join('src', 'index.html')])
     .pipe(gulp.dest('app'));
 });
+/**
+ * 如果有必要可以可以扩展js 预编译
+ */
 gulp.task('js', function () {
-  return gulp.src(path.join('src', 'index.js'))
+  return gulp.src(path.join('src', '*.js'))
     .pipe(gulp.dest('app'))
     .pipe(reload({ stream: true }));
 });
@@ -23,7 +26,7 @@ gulp.task('less', function () {
 
 });
 
-// 监视 Sass 文件的改动，如果发生变更，运行 'sass' 任务，并且重载文件
+// 监视 less 文件的改动，如果发生变更，运行 'less' 任务，并且重载文件
 gulp.task('start', ['less', 'js','html'], function () {
   browserSync({
     server: {
