@@ -6,7 +6,7 @@ const reload = browserSync.reload;
 const path = require("path");
 
 gulp.task('html', function () {
-  return gulp.src([path.join('src', 'favicon.ico'), path.join('src', 'index.html')])
+  return gulp.src([path.join('src', 'favicon.ico'), path.join('src', '*.html')])
     .pipe(gulp.dest('app'));
 });
 /**
