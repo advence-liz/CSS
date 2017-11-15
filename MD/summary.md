@@ -95,6 +95,8 @@ transoform-style 子元素是否继承元素的3D转换（即在父元素的基�
 - border-collapse:collapse; 有些table显示的时候，下边界消失去掉此属性可以解决（但是不知道为什么） ，或者table设为display：inline-block （此举可能影响布局）;
 
 - button::before { content: ''; position: absolute; top: -10px; right: -10px; bottom: -10px; left: -10px;} 绝对定位可以控制元素大小。
+
+- 等高布局 考虑 display ： table-cell   flex
    
 
 # 参考链接
