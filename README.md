@@ -6,13 +6,13 @@
 
 ## Index(感觉目前除了 3D骰子没有能看的)
 
-- [CSS伪元素before&after用法](https://advence-liz.github.io/CSS/CSSSources/beforeafter.html)
+- [CSS伪元素before&after用法](https://advence-liz.github.io/CSS-DOM/CSSSources/beforeafter.html)
 
-- [3D骰子](https://advence-liz.github.io/CSS/CSSSources/3ddice.html)
+- [3D骰子](https://advence-liz.github.io/CSS-DOM/CSSSources/3ddice.html)
 
-- [boxShadow](https://advence-liz.github.io/CSS/CSSSources/boxShadow.html)
+- [boxShadow](https://advence-liz.github.io/CSS-DOM/CSSSources/boxShadow.html)
 
-- [stacking context](https://advence-liz.github.io/CSS/CSSSources/stacking.html)
+- [stacking context](https://advence-liz.github.io/CSS-DOM/CSSSources/stacking.html)
 
 ## REF 
 
