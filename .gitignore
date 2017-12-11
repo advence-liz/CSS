@@ -4,12 +4,11 @@
 node_modules/
 #dist/
 .vscode/
+build/
 bower_components/
  "**/.*"
  .vs/
- 
- app/
-
+babel_cache/
 #################
 ## Visual Studio
 #################
