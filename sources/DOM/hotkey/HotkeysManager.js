@@ -2,8 +2,6 @@
  * @class HotkeysManager
  * @param {String} scope 初始化 HotKeysManager 设置 RootScope
  * @desc
- * bg FCFCFD
- * border 767676
  */
 function HotkeysManager(scope) {
     var keyMap, hotkeyMode = false;
@@ -15,14 +13,20 @@ function HotkeysManager(scope) {
     this.document = $(document);
     this.setScope = function (scope) {
         // 考虑到有些元素可能动态产生，所以就不用缓存了每次都刷新数据源
-        if (hotkeyMode) {
+        if (this.hotkeyMode()) {
             this.$flagList.toggleClass('active', false);
             this.$flagList = $('[data-scope=' + scope + ']').toggleClass('active', true);
             this.flagList = this.$flagList.toArray().map(function (value) {
                 var obj = $.extend({ element: value }, value.dataset);
                 return compile.call(obj)(value);
             });
-            this.flagList = $.extend.apply(null, this.flagList);
+            /**
+             * 将 this.flagList数组转为 hotkey：value 的对象形式
+             * 当时数组长度为零的时候 传入的 {} 起效因为 $.extend 当长度只有一个的时候 extend 到jQuery 本身上
+             *    this.flagList = $.extend.apply({},this.flagList);
+             */
+            this.flagList.unshift({});
+            this.flagList = $.extend.apply(null,this.flagList);
             this.scope = scope;
             return true;
         } else {

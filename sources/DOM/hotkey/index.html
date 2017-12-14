@@ -10,7 +10,7 @@
     <link href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css' rel='stylesheet'>
     <script src='https://cdn.bootcss.com/jquery/3.0.0/jquery.js'></script>
     <script src='https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js'></script>
-    <!-- <script src="../lib/hotkeys.js"></script> -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <script src="HotkeysManager.js"></script>
     <style>
         *[data-flag]::after {
@@ -39,11 +39,20 @@
         a {
             display: inline-block;
         }
+
+        #print {
+            text-align: center;
+            color: rebeccapurple;
+        }
+
+        .head {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body style="font-size:20px;">
-    <h1>hotkey</h1>
+    <h1 class="head">hotkey</h1>
     <h2>* 1 ctrl+alt+z when keyup 展示当前 RootScope</p>
         <h2> * 2 键盘输入一个Key 触发对应DOM 元素的click事件 根据next 切换到对应的ChildScope</p>
             <p id="print">当前区域显示 click 事件触发的后台key 对应的DOM元素</p>
@@ -98,14 +107,14 @@
                         <h2>三级子scope ScopeC</h2>
                         <section>
 
-                            <li data-flag="CA" data-scope="ScopeC">
-                                <a>HotkeyCA</a>
+                            <li>
+                                <a data-flag="CA" data-scope="ScopeC">HotkeyCA</a>
                             </li>
-                            <li data-flag="CB" data-scope="ScopeD">
-                                <a>HotkeyCB</a>
+                            <li>
+                                <a data-flag="CB" data-scope="ScopeC">HotkeyCB</a>
                             </li>
-                            <li data-flag="C" data-next="ScopeA">
-                                <a>HotkeyC</a>
+                            <li>
+                                <a data-flag="C" data-scope="ScopeC">HotkeyC</a>
                             </li>
 
                         </section>
@@ -114,14 +123,14 @@
                         <h2>三级子scope ScopeD</h2>
                         <section>
 
-                            <li data-flag="DA" data-scope="ScopeD">
-                                <a>HotkeyDA</a>
+                            <li>
+                                <a data-flag="DA" data-scope="ScopeD">HotkeyDA</a>
                             </li>
-                            <li data-flag="DB" data-scope="ScopeD">
-                                <a>HotkeyDB</a>
+                            <li>
+                                <a data-flag="DB" data-scope="ScopeD">HotkeyDB</a>
                             </li>
-                            <li data-flag="D" data-scope="ScopeD">
-                                <a>HotkeyD</a>
+                            <li>
+                                <a data-flag="D" data-scope="ScopeD">HotkeyD</a>
                             </li>
 
                         </section>
