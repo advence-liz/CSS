@@ -9,31 +9,42 @@ function HotkeysManager(scope) {
     this.rootScope = scope;
     this.scope = scope;
     this.$flagList = new $();
-    this.flagList = [];
+    this.flagList = null;
     this.document = $(document);
     this.setScope = function (scope) {
-        // 考虑到有些元素可能动态产生，所以就不用缓存了每次都刷新数据源
+       
         if (this.hotkeyMode()) {
-            this.$flagList.toggleClass('active', false);
-            this.$flagList = $('[data-scope=' + scope + ']').toggleClass('active', true);
-            this.flagList = this.$flagList.toArray().map(function (value) {
-                var obj = $.extend({ element: value }, value.dataset);
-                return compile.call(obj)(value);
-            });
-            /**
-             * 将 this.flagList数组转为 hotkey：value 的对象形式
-             * 当时数组长度为零的时候 传入的 {} 起效因为 $.extend 当长度只有一个的时候 extend 到jQuery 本身上
-             *    this.flagList = $.extend.apply({},this.flagList);
-             */
-            this.flagList.unshift({});
-            this.flagList = $.extend.apply(null,this.flagList);
             this.scope = scope;
+            this.refreshScope();
+            this.flagList =  this.convertFlagList();
+          
             return true;
         } else {
             return false;
         }
 
 
+    };
+    //convert Array to Object
+    this.convertFlagList = function(){
+          var flagList = this.$flagList.toArray().map(function (value) {
+            var obj = $.extend({ element: value }, value.dataset);
+            return compile.call(obj)(value);
+        });
+        /**
+         * 将 this.flagList数组转为 hotkey：value 的对象形式
+         * 当时数组长度为零的时候 传入的 {} 起效因为 $.extend 当长度只有一个的时候 extend 到jQuery 本身上
+         *    this.flagList = $.extend.apply({},this.flagList);
+         */
+        flagList.unshift({});
+        flagList = $.extend.apply(null, flagList);
+        return flagList;
+    };
+    this.refreshScope = function () {
+        //取消上一次DOM
+        this.$flagList.toggleClass('active', false);
+
+        this.$flagList = $('[data-scope=' + this.scope + ']').toggleClass('active', true);
     };
     this.setRootScope = function (scope) {
         this.rootScope = scope;
@@ -59,7 +70,7 @@ function HotkeysManager(scope) {
         /**
          * 开启hotkeyMode，或者记录按下的快捷键
          * @param {*} e event
-         */    
+         */
         function keydown(e) {
             if (this.hotkeyMode()) {
                 this.hotkeys_arr.indexOf(e.key) > -1 ?
@@ -87,14 +98,14 @@ function HotkeysManager(scope) {
                         null;
                 } catch (error) {
                     //this.hotkeys_arr.length = 0;
-                }finally{
+                } finally {
                     this.hotkeys_arr.length = 0;
                 }
-               
+
             }
             //开启hotkeyMode
             // else if (e.keyCode === 90 && e.altKey && e.ctrlKey) {
-                
+
             //     this.hotkeyMode(true);
             //     this.setScope(this.rootScope);
             // }
@@ -163,7 +174,7 @@ function HotkeysManager(scope) {
         arr.push("obj." + this.flag + ".element=element;");
         arr.push("return obj;");
         return new Function('element', arr.join('\n'));
-      
+
     }
 
 }
