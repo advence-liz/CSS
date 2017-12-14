@@ -49,8 +49,8 @@ hotkeysManager.setRootScope("ScopeB")
 ## Hotkey instance 与 Scope 的关系
 ### scope 中包涵多个Hotkey instance
 ![](pic/scope.svg)
-### Scope Tree
-Scope 之间的关系看起来是一个tree，但是更确切的说法是一个**有向无环图**，从一个Scope出发走向下一个scope
+### Scope Tree?
+Scope 之间的关系看起来是一个tree，但是我认为更确切说法是一个**有向无环图**(参考的git对象理念），从一个Scope出发走向下一个scope
 ![](pic/hotkeyscopetree.svg)
 ## HotKey System flow 
 先关注主流程，随后再关注分支
