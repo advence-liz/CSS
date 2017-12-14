@@ -1,4 +1,4 @@
-# Hotkey System
+# Hotkey System [Online DEMO](https://advence-liz.github.io/CSS-DOM/sources/DOM/hotkey/)
 
 本文意在说明 hotkey 系统的实现，简单描述一下hotkey系统的行为：
 
@@ -41,7 +41,7 @@ var hotkeysManager = new HotkeysManager('ScopeA');
 hotkeysManager.setRootScope("ScopeB")
 
 ```
-### [Online DEMO](https://advence-liz.github.io/CSS/src/hotkey.html)
+### [Online DEMO](https://advence-liz.github.io/CSS-DOM/sources/DOM/hotkey/)
 
 ## Hotkey 类图
 ![Hotkey_class.svg](pic/hotkeyclass.svg)
