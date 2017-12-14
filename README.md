@@ -56,5 +56,5 @@ Scope 之间的关系看起来是一个tree，但是我认为更确切说法是�
 先关注主流程，随后再关注分支
 
 ![](pic/hotkeys.svg)
-## hotkey GIF
+## hotkey GIF (**放大了看**)
 ![hotkey.gif](pic/hotkey.gif)
