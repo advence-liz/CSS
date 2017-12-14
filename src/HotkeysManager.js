@@ -1,5 +1,9 @@
 /**
- * 
+ * @class HotkeysManager
+ * @param {String} scope 初始化 HotKeysManager 设置 RootScope
+ * @desc
+ * bg FCFCFD
+ * border 767676
  */
 function HotkeysManager(scope) {
     var keyMap, hotkeyMode = false;
@@ -32,6 +36,8 @@ function HotkeysManager(scope) {
     };
     /**
      * hotkeyMode 读写器
+     * @param {Bool} state  读写器
+     * @return {Bool} hotKeyMode 
      */
     this.hotkeyMode = function (state) {
         if (state !== undefined) {
@@ -46,6 +52,10 @@ function HotkeysManager(scope) {
             .on('keyup', keyup.bind(this))
             .on('click', clickDocment.bind(this))
             .on("click", '[data-flag]', clickFlag.bind(this));
+        /**
+         * 开启hotkeyMode，或者记录按下的快捷键
+         * @param {*} e event
+         */    
         function keydown(e) {
             if (this.hotkeyMode()) {
                 this.hotkeys_arr.indexOf(e.key) > -1 ?
@@ -58,6 +68,11 @@ function HotkeysManager(scope) {
                 this.setScope(this.rootScope);
             }
         }
+        /**
+         * 判断键入的组合键是否匹配预先设置的组合键，如果满足则触发对应元素的 click 事件
+         * @param {*} e Event
+         * @return {Bool} 阻止事件冒泡 阻止document click 触发
+         */
         function keyup(e) {
 
             if (this.hotkeyMode()) {
@@ -67,9 +82,11 @@ function HotkeysManager(scope) {
                         this.flagList[keyCombination].element.click() :
                         null;
                 } catch (error) {
+                    //this.hotkeys_arr.length = 0;
+                }finally{
                     this.hotkeys_arr.length = 0;
                 }
-                this.hotkeys_arr.length = 0;
+               
             }
             //开启hotkeyMode
             // else if (e.keyCode === 90 && e.altKey && e.ctrlKey) {
@@ -89,6 +106,8 @@ function HotkeysManager(scope) {
          * data-flag 元素click触发如果不阻止事件冒泡，那么 docment的click 就会触发hotMode就会变为false
          * 所以只能让大家在自己事件上阻止冒泡，我要是直接阻止冒泡我担心这个元素并不是触发事件的元素
          * 根据属性配置是否阻止事件冒泡
+         * @param {*} e Event
+         * @return {Bool} 是否阻止事件冒泡
          */
         function clickFlag(e) {
             if (this.hotkeyMode() && e.target.dataset.next) {
@@ -118,9 +137,20 @@ function HotkeysManager(scope) {
     };
     this._init();
     /**
-     * 为了构建出 key 值为 flag 的对象
+     * 为了构建出 key 值为 flag 的对象 
+     * @return {Function} 根据设置的this 构建出的特定 function
      */
     function compile() {
+        /** "function anonymous(element
+         *     ) {
+         *     var obj= {
+         *     A:
+         *     {"element":{},"flag":"A","next":"ScopeB","scope":"ScopeA"}
+         *     };
+         *     obj.A.element=element;
+         *     return obj;
+         *    }"
+         */
         var arr = [];
         arr.push("var obj= {");
         arr.push(this.flag + ':');
@@ -129,14 +159,12 @@ function HotkeysManager(scope) {
         arr.push("obj." + this.flag + ".element=element;");
         arr.push("return obj;");
         return new Function('element', arr.join('\n'));
+      
     }
 
 }
-var hotkeysManager = new HotkeysManager('ScopeA');
 
- $(document).on("click", '[data-flag]',function(e){
-   console.log(e.target.dataset.flag);
- });
+
 
 /**
  * 1 ctrl+alt+z when keyup 展示当前 RootScope
