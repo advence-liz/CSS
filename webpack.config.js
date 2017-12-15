@@ -13,15 +13,15 @@ let plugins = [
         filename: 'index.html',
         template: 'template/_layout.ejs',
         favicon: "template/favicon.ico",
-        inject: 'head',
-        title: "DUST"
+        // inject: 'head',
+        title: "Hotkeys"
 
     })
 ];
 
 module.exports = {
     entry: {
-        dust: './src'
+        index: './src'
     },
     output: {
         path: path.resolve(__dirname, outputPath),

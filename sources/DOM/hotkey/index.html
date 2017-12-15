@@ -10,8 +10,6 @@
     <link href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css' rel='stylesheet'>
     <script src='https://cdn.bootcss.com/jquery/3.0.0/jquery.js'></script>
     <script src='https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js'></script>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <script src="HotkeysManager.js"></script>
     <style>
         *[data-flag]::after {
             content: attr(data-flag);
@@ -49,7 +47,7 @@
             text-align: center;
         }
     </style>
-</head>
+<link rel="shortcut icon" href="favicon.ico"></head>
 
 <body style="font-size:20px;">
     <h1 class="head">hotkey</h1>
@@ -58,7 +56,14 @@
             <p id="print">当前区域显示 click 事件触发的后台key 对应的DOM元素</p>
 
             <div class="container">
-
+                <div class="row">
+                    <div class="col-md-12">
+                        <a data-flag="1" data-next="ScopeA" data-scope="globalRoot" href="javascript:;">1</a>
+                        <a data-flag="2" data-next="ScopeA" data-scope="globalRoot" href="javascript:;">2</a>
+                        <a data-flag="3" data-next="ScopeA" data-scope="globalRoot" href="javascript:;">3</a>
+                        <a data-flag="4" data-next="ScopeA" data-scope="globalRoot" href="javascript:;">4</a>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-8">
                         <h2>RootScope ScopeA</h2>
@@ -139,14 +144,6 @@
 
             </div>
             </div>
-
-            <script>
-                var hotkeysManager = new HotkeysManager('ScopeA');
-                var print = $("#print");
-                $(document).on("click", '[data-flag]', function (e) {
-                    print.text(e.currentTarget.outerHTML + "clickd!");
-                });
-            </script>
-</body>
+<script type="text/javascript" src="index.js"></script></body>
 
 </html>

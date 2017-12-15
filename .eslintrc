@@ -9,7 +9,16 @@
   "extends": [
     "eslint:recommended"
   ],
- 
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "impliedStrict": true,
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "parser": "babel-eslint",
   "plugins": [
     "react"
   ],
