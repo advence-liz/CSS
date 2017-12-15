@@ -9,14 +9,14 @@ function HotkeysManager(scope) {
     this.rootScope = scope;
     this.scope = scope;
     this.$flagList = new $();
-    this.flagList = null;
+    this.flagMap = new Map();
     this.document = $(document);
     this.setScope = function (scope) {
        
         if (this.hotkeyMode()) {
             this.scope = scope;
             this.refreshScope();
-            this.flagList =  this.convertFlagList();
+            this.convertFlagList();
           
             return true;
         } else {
@@ -25,20 +25,16 @@ function HotkeysManager(scope) {
 
 
     };
-    //convert Array to Object
+    //convert Array to Map
     this.convertFlagList = function(){
-          var flagList = this.$flagList.toArray().map(function (value) {
+        var flagMap = new Map();
+          this.$flagList.toArray().map(function (value) {
             var obj = $.extend({ element: value }, value.dataset);
-            return compile.call(obj)(value);
+             flagMap.set(obj.flag,obj);
+           // return compile.call(obj)(value);
         });
-        /**
-         * 将 this.flagList数组转为 hotkey：value 的对象形式
-         * 当时数组长度为零的时候 传入的 {} 起效因为 $.extend 当长度只有一个的时候 extend 到jQuery 本身上
-         *    this.flagList = $.extend.apply({},this.flagList);
-         */
-        flagList.unshift({});
-        flagList = $.extend.apply(null, flagList);
-        return flagList;
+        this.flagMap=flagMap;
+        
     };
     this.refreshScope = function () {
         //取消上一次DOM
@@ -93,14 +89,15 @@ function HotkeysManager(scope) {
             if (this.hotkeyMode()) {
                 var keyCombination = this.hotkeys_arr.join('').toUpperCase();
                 try {
+                    //添加一个固定的globRootMap
                     this.hotkeyMode() ?
-                        this.flagList[keyCombination].element.click() :
+                    this.flagMap.get(keyCombination).element.click() :
                         null;
-                } catch (error) {
-                    //this.hotkeys_arr.length = 0;
-                } finally {
+              } catch (error) {
+                  console.error(error);
+             } finally {
                     this.hotkeys_arr.length = 0;
-                }
+             }
 
             }
             //开启hotkeyMode
@@ -179,8 +176,9 @@ function HotkeysManager(scope) {
 
 }
 
-
-
+//TODO
+//1 flag 大小写
+//2 add globaRootMap
 /**
  * 1 ctrl+alt+z when keyup 展示当前 RootScope
  * 2 键盘输入一个Key 触发对应DOM 元素的click事件 根据next 切换到对应的ChildScope
