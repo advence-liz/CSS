@@ -76,13 +76,13 @@ var _HotkeysManager2 = _interopRequireDefault(_HotkeysManager);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var hotkeysManager = new _HotkeysManager2.default('globalRoot');
+var hotkeysManager = new _HotkeysManager2.default('ScopeA');
 var print = $("#print");
 $(document).on("click", '[data-flag]', function (e) {
     print.text(e.currentTarget.outerHTML + "clickd!");
 });
-hotkeysManager.showGlobal(true);
-hotkeysManager.setRootScope("ScopeA");
+// hotkeysManager.showGlobal(true);
+// hotkeysManager.setRootScope("ScopeA");
 
 /***/ }),
 /* 1 */
