@@ -21,7 +21,7 @@ let plugins = [
 
 module.exports = {
     entry: {
-        dust: './src'
+        index: './src'
     },
     output: {
         path: path.resolve(__dirname, outputPath),
