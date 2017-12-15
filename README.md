@@ -1,67 +1,33 @@
-# Hotkey System [Online DEMO](https://advence-liz.github.io/CSS-DOM/sources/DOM/hotkey/)
+# CSS
+为了CSS学习与研究
 
-本文意在说明 hotkey 系统的实现，简单描述一下hotkey系统的行为：
+- [dev branch](https://github.com/advence-liz/CSS/tree/dev) 构建了一个 基于browersync 热替换较少架方便调试样式
+- [hotkeys branch](https://github.com/advence-liz/CSS/tree/hotkeys) 提供一个hotkey 解决方案
 
-- 当用户键入 Ctrl+Alt+Z 时激活 hotkeyMode 页面上的一些元素就会浮现 tooltip(提示对应元素的hotkey 是什么) 这里我们提出第一个抽象概念Scope 此时浮现 tooltip 的元素处于同一个Scope 中。
-- 当用户键入 指定hotkey(**与此同时会触发hotkey所在DOM元素的Click 事件**) 另外的一些元素 浮现 tooltip，之前的元素tooltip 消失，即上一Scope 元素 tooltip 隐藏，当前Scope 元素tooltip 浮现
+## REF 
 
-- 当任意时刻Click 页面 hotkeyMode 关闭，当再次Ctrl+Alt+Z hotkeyMode 激活，此时一些元素tooltip 浮现，这里你可能发现个问题 当我激活hotkeyMode的时候显示那个Scope中的所有元素呢？
-在这里提出另外一个概念RootScope 当激活hotMode 时显示的为当前RootScope 中的内容，RootScope跟其他Scope没什么区别我们只是将某一个Scope设定为RootScope 而已，而且RootScope还可以随时改变。
-- 可以具体参考下文的流程图或者最下面的动图
-## Hotkey Class
-上文提出了Scope 概念，那我们如何表示一个hotkey 元素，每个hotkey 元素相对于一个 Hotky Class 的实例。
+. <a href="http://www.cnblogs.com/coco1s/category/833837.html" target="_blank">CSS-进阶--ChokCoco</a>
 
-Hotkey Class示意图见下图：其包涵 flag,scope,next,bubble 四个属性
+. <a href="https://github.com/josephschmitt/Clamp.js" target="_blank">Clamp</a>
 
-- flag：定义hotkey 要显示的提示（标题）
-- scope：定义当前Scope
-- next：当前hotkey 被激活时进入的ChildScope(**像一个指针指向下一个scope**)
-- bubble:事件冒泡（默认阻止事件冒泡）因为当键入匹配的hotkey的时候会触发对应的DOM的click，如果不阻止事件冒泡 那么将触发 document的click 事件从而也就关闭的hotKeyMode
+. <a href="http://zhaolei.info/2014/01/04/css-preprocessor-and-postprocessor/#more" target="_blank">CSS 预处理器与 CSS 后处理器</a>
 
-当然这里并不需要大家在javascript中逐个初始Hotkey instance,我只要在作为hotkey的元素中配置上对应的 html 属性即可
-```xml
-                <section>
-                    <li>
-                        <a data-flag="A" data-next="ScopeC" data-scope="ScopeB"  href="javascript:;">hot</a>
-                    </li>
-                    <li>
-                        <a data-flag="B" data-next="scope32" data-scope="ScopeB" data-bubble="true" href="javascript:;">not stopBubble</a>
-                    </li>
+. <a href="http://www.cnblogs.com/lhb25/category/146075.html" target="_blank">前端里博客</a>
 
-                </section>
-```
-## HotkeysManager  
-HotkeysManager 即启动和管理Hotkey System 的类使用方法如下：
+. <a href="http://www.yyyweb.com/" target="_blank">前端里</a>
 
-```javascript
-//初始化 HotkeysManager 并设置RootScope 为ScopeA
-var hotkeysManager = new HotkeysManager('ScopeA');
+. <a href="http://www.cnblogs.com/CandyManPing/p/5517327.html" target="_blank">水平居中垂直居中</a>
 
-//当你想更改RootScope 时调用如下代码
-hotkeysManager.setRootScope("ScopeB")
+. [CSS为之高度垂直居中](http://www.cnblogs.com/rubylouvre/archive/2010/07/08/1774025.html)
 
-//有点时候hotkey 所在DOM 结构动态生成，当事件触发的时候DOM 并没有立即生成所以无法显示出来 ，此时调用下面代码强行刷新
-hotkeysManager.refreshScope()
+. <a href="http://hslpicker.com/#43a34f,0.9" target="_blank">HLSA</a>
 
-//有些场景我们有一个 GlobalScope，激活hotKeyMode 时与RootScope 同事显示,此时通过下面的代码控制GlobalScope 是否显示
-hotkeysManager.showGlobal(ture);//hotkeysManager.showGlobal() 是读写器参数为空的时候 返回 bool 值
-hotkeysManager.showGlobal(false); 
+. [loading](https://zhuanlan.zhihu.com/p/24464355?refer=itlion114)
 
-```
-### [Online DEMO](https://advence-liz.github.io/CSS-DOM/sources/DOM/hotkey/)
+. [javscrpt&ccs](https://zhuanlan.zhihu.com/p/24162642)
 
-## Hotkey 类图
-![Hotkey_class.svg](doc/pic/hotkeyclass.svg)
+. [css3button](http://mp.weixin.qq.com/s?__biz=MjM5MDk5MzE2Mw%3D%3D&mid=2527294515&idx=1&sn=ae0f5d215788ea492b217b32c287c501&chksm=b5eb8a57829c0341dc16ca158ccbefc3d5bb4596f2f73516ebb485aa6b9673a1f9f0b1ec292e&mpshare=1&scene=1&srcid=1213nYC6j18lveohWCs4wuXs)
 
-## Hotkey instance 与 Scope 的关系
-### scope 中包涵多个Hotkey instance
-![](doc/pic/scope.svg)
-### Scope Tree?
-Scope 之间的关系看起来是一个tree，但是我认为更确切说法是一个**有向无环图**(参考的git对象理念），从一个Scope出发走向下一个scope
-![](doc/pic/hotkeyscopetree.svg)
-## HotKey System flow 
-先关注主流程，随后再关注分支
+. [CSS转盘抽奖](https://segmentfault.com/r/1250000008053580?shareId=1210000008053592)
 
-![](doc/pic/hotkeys.svg)
-## hotkey GIF (**放大了看**)
-![hotkey.gif](doc/pic/hotkey.gif)
+. [在线图片滤镜](http://filter.awesomes.cn/)
