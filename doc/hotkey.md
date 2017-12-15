@@ -1,10 +1,8 @@
-# Hotkey System [Online DEMO](https://advence-liz.github.io/CSS-DOM/sources/DOM/hotkey/)
+# Hotkey System
 
 本文意在说明 hotkey 系统的实现，简单描述一下hotkey系统的行为：
-
 - 当用户键入 Ctrl+Alt+Z 时激活 hotkeyMode 页面上的一些元素就会浮现 tooltip(提示对应元素的hotkey 是什么) 这里我们提出第一个抽象概念Scope 此时浮现 tooltip 的元素处于同一个Scope 中。
-- 当用户键入 指定hotkey(**与此同时会触发hotkey所在DOM元素的Click 事件**) 另外的一些元素 浮现 tooltip，之前的元素tooltip 消失，即上一Scope 元素 tooltip 隐藏，当前Scope 元素tooltip 浮现
-
+- 当用户键入 指定hotkey 另外的一些元素 浮现 tooltip，之前的元素tooltip 消失，即上一Scope 元素 tooltip 隐藏，当前Scope 元素tooltip 浮现
 - 当任意时刻Click 页面 hotkeyMode 关闭，当再次Ctrl+Alt+Z hotkeyMode 激活，此时一些元素tooltip 浮现，这里你可能发现个问题 当我激活hotkeyMode的时候显示那个Scope中的所有元素呢？
 在这里提出另外一个概念RootScope 当激活hotMode 时显示的为当前RootScope 中的内容，RootScope跟其他Scope没什么区别我们只是将某一个Scope设定为RootScope 而已，而且RootScope还可以随时改变。
 - 可以具体参考下文的流程图或者最下面的动图
@@ -15,8 +13,8 @@ Hotkey Class示意图见下图：其包涵 flag,scope,next,bubble 四个属性
 
 - flag：定义hotkey 要显示的提示（标题）
 - scope：定义当前Scope
-- next：当前hotkey 被激活时进入的ChildScope(**像一个指针指向下一个scope**)
-- bubble:事件冒泡（默认阻止事件冒泡）因为当键入匹配的hotkey的时候会触发对应的DOM的click，如果不阻止事件冒泡 那么将触发 document的click 事件从而也就关闭的hotKeyMode
+- next：当前hotkey 被激活时进入的ChildScope
+- bubble:事件冒泡（默认阻止事件冒泡）
 
 当然这里并不需要大家在javascript中逐个初始Hotkey instance,我只要在作为hotkey的元素中配置上对应的 html 属性即可
 ```xml
@@ -40,28 +38,21 @@ var hotkeysManager = new HotkeysManager('ScopeA');
 //当你想更改RootScope 时调用如下代码
 hotkeysManager.setRootScope("ScopeB")
 
-//有点时候hotkey 所在DOM 结构动态生成，当事件触发的时候DOM 并没有立即生成所以无法显示出来 ，此时调用下面代码强行刷新
-hotkeysManager.refreshScope()
-
-//有些场景我们有一个 GlobalScope，激活hotKeyMode 时与RootScope 同事显示,此时通过下面的代码控制GlobalScope 是否显示
-hotkeysManager.showGlobal(ture);//hotkeysManager.showGlobal() 是读写器参数为空的时候 返回 bool 值
-hotkeysManager.showGlobal(false); 
-
 ```
-### [Online DEMO](https://advence-liz.github.io/CSS-DOM/sources/DOM/hotkey/)
+### [Online DEMO](https://advence-liz.github.io/CSS/src/hotkey.html)
 
 ## Hotkey 类图
-![Hotkey_class.svg](doc/pic/hotkeyclass.svg)
+![Hotkey_class.svg](../pic/hotkeyclass.svg)
 
 ## Hotkey instance 与 Scope 的关系
 ### scope 中包涵多个Hotkey instance
-![](doc/pic/scope.svg)
-### Scope Tree?
-Scope 之间的关系看起来是一个tree，但是我认为更确切说法是一个**有向无环图**(参考的git对象理念），从一个Scope出发走向下一个scope
-![](doc/pic/hotkeyscopetree.svg)
+![](../pic/scope.svg)
+### Scope Tree
+Scope 之间的关系看起来是一个tree，但也不全对因为子节点也可以指向父节点但是正常没有这种操作（或者称为一个像tree 一样的有向图更准确）
+![](../pic/hotkeyscopetree.svg)
 ## HotKey System flow 
 先关注主流程，随后再关注分支
 
-![](doc/pic/hotkeys.svg)
-## hotkey GIF (**放大了看**)
-![hotkey.gif](doc/pic/hotkey.gif)
+![](../pic/hotkeys.svg)
+## hotkey GIF
+![hotkey.gif](../pic/hotkey.gif)
