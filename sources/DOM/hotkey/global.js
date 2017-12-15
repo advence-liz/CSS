@@ -193,7 +193,7 @@
                         if (this.hotkeyMode()) {
                             var cur_element;
                             cur_element = this.flagMap.get(keyCombination) || this.globalFlagMap.get(keyCombination);
-                            cur_element.click();
+                            $(cur_element).hasClass("active")&& cur_element.click();
                         }
                     } catch (error) {
                         //  console.error(error);
