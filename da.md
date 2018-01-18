@@ -1,7 +1,18 @@
 # for ....
 
 ```js
+HotkeysManager //挂在window 下cp.common.js 里面
+
+
+
  $$.HotKey = HotKey;//H K 都大写
+ /**
+ * 
+ * @param {String} flag 
+ * @param {String} scope 
+ * @param {String} next 
+ * @param {Bool} bubble 
+ */
  function HotKey(flag, scope, next, bubble) {
         this.flag = flag;
         this.scope = scope;
