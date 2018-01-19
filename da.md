@@ -3,7 +3,7 @@
 ```js
 HotkeysManager //挂在window 下cp.common.js 里面
 
-
+window.HotkeysManager
 
  $$.HotKey = HotKey;//H K 都大写
  /**
