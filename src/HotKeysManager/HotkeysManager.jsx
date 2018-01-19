@@ -1,9 +1,12 @@
+﻿
+const activeName = 'hkactive';
+
 /**
  * @class HotkeysManager
  * @param {String} scope 初始化 HotKeysManager 设置 RootScope
  * @desc
  */
-function HotkeysManager(scope) {
+function HotKeysManager(scope) {
     var hotkeyMode = false, showGlobal = false;
     this.hotkeys_arr = [];
     this.globalScope = scope;
@@ -40,11 +43,11 @@ function HotkeysManager(scope) {
     };
     this.refreshScope = function () {
         //取消上一次DOM
-        this.$flags.toggleClass('active', false);
+        this.$flags.toggleClass(activeName, false);
         //每次都重新获取DOM 元素，因为DOM元素可能动态渲染
-        this.$flags = $('[data-scope=' + this.scope + ']').toggleClass('active', true);
+        this.$flags = $('[data-scope=' + this.scope + ']').toggleClass(activeName, true);
         if (!this.$flags.length) {
-            throw `makesure ${this.scope} really exist`;
+            console.warn(`makesure ${this.scope} really exist`);
         }
     };
     this.setRootScope = function (scope) {
@@ -88,9 +91,9 @@ function HotkeysManager(scope) {
             //开启hotkeyMode 经测试感觉keydown的时候开学hotkeyMode 比较好
             else if (e.keyCode === 90 && e.altKey && e.ctrlKey) {
                 this.hotkeyMode(true);
-                this.showGlobal() && this.$globalFlags.toggleClass('active', true);
+                this.showGlobal() && this.$globalFlags.toggleClass(activeName, true);
                 this.setScope(this.rootScope);
-              
+
             }
         }
         /**
@@ -107,12 +110,12 @@ function HotkeysManager(scope) {
                     if (this.hotkeyMode()) {
                         var cur_element;
                         cur_element = this.flagMap.get(keyCombination) || this.globalFlagMap.get(keyCombination);
-                        $(cur_element).hasClass("active")&& cur_element.click();
+                        $(cur_element).hasClass(activeName) && cur_element.click();
                     }
 
 
                 } catch (error) {
-                      console.error(error);
+                    console.error(error);
                 } finally {
                     this.hotkeys_arr.length = 0;
                 }
@@ -122,8 +125,8 @@ function HotkeysManager(scope) {
         }
         //当点击页面任何位置移除$flags激活状态
         function clickDocment(e) {
-            this.$flags.toggleClass('active', false);
-            this.$globalFlags.toggleClass('active', false);
+            this.$flags.toggleClass(activeName, false);
+            this.$globalFlags.toggleClass(activeName, false);
             this.hotkeyMode(false);
         }
         /**
@@ -137,10 +140,10 @@ function HotkeysManager(scope) {
             if (this.hotkeyMode() && e.target.dataset.next) {
                 this.setScope(e.target.dataset.next);
             } else {
-                this.$flags.toggleClass('active', false);
+                this.$flags.toggleClass(activeName, false);
                 this.hotkeyMode(false);
             }
-            this.$globalFlags.toggleClass('active', false);
+            this.$globalFlags.toggleClass(activeName, false);
             return e.target.dataset.bubble === "true" ? true : false;
         }
     };
@@ -154,7 +157,7 @@ function HotkeysManager(scope) {
     this._init();
 }
 
-export default HotkeysManager;
+export default HotKeysManager;
 //TODO
 //1 flag 大小写
 //2 add globaRootMap

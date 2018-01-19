@@ -1,0 +1,22 @@
+﻿*[data-flag]::after {
+    content: attr(data-flag);
+    position: absolute;
+    visibility: hidden;
+    background: #FCFCFD;
+    border: solid 1px #767676;
+    color: #555;
+    display: block;
+    padding: 0 3px;
+    font-size: 11px;
+    border-radius: 2px;
+    top: 50%;
+    left: 50%;
+}
+
+*.hkactive[data-flag]::after {
+    visibility: visible;
+}
+
+*[data-flag] {
+    position: relative;
+}
