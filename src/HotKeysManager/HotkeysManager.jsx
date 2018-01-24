@@ -11,25 +11,29 @@ function HotKeysManager(scope) {
     this.hotkeys_arr = [];
     this.globalScope = scope;
     this.rootScope = scope;
+    this.oldRootScope = scope;
     this.scope = scope;
     this.$globalFlags = new $(),
-        this.globalFlagMap = new Map(),
-        this.$flags = new $();
+    this.globalFlagMap = new Map(),
+    this.$flags = new $();
     this.flagMap = new Map();
     this.document = $(document);
-    this.setScope = function (scope) {
+    this.setScope = function (scope = this.scope) {
 
         if (this.hotkeyMode()) {
             this.scope = scope;
             this.refreshScope();
             this.flagMap = this.convertFlags2Map(this.$flags);
+            if (this.showGlobal()) {
+                this.$globalFlags = $(`[data-scope=${this.globalScope}]:visible`);
+                this.globalFlagMap = this.convertFlags2Map(this.$globalFlags);
+                this.$globalFlags.toggleClass(activeName, true);
+            }
 
             return true;
         } else {
             return false;
         }
-
-
     };
     //convert Array to Map
     this.convertFlags2Map = function ($flags) {
@@ -45,13 +49,18 @@ function HotKeysManager(scope) {
         //取消上一次DOM
         this.$flags.toggleClass(activeName, false);
         //每次都重新获取DOM 元素，因为DOM元素可能动态渲染
-        this.$flags = $('[data-scope=' + this.scope + ']').toggleClass(activeName, true);
+        this.$flags = $(`[data-scope=${this.scope}]:visible`).toggleClass(activeName, true);
         if (!this.$flags.length) {
             console.warn(`makesure ${this.scope} really exist`);
         }
     };
     this.setRootScope = function (scope) {
+        this.oldRootScope = this.rootScope;
         this.rootScope = scope;
+    };
+
+    this.resetRootScope = function () {
+        this.rootScope = this.oldRootScope;
     };
     /**
      * hotkeyMode 读写器
@@ -88,10 +97,10 @@ function HotKeysManager(scope) {
                     null :
                     this.hotkeys_arr.push(e.key);
             }
-            //开启hotkeyMode 经测试感觉keydown的时候开学hotkeyMode 比较好
+            //开启hotkeyMode 经测试感觉keydown的时候开启hotkeyMode 比较好
             else if (e.keyCode === 90 && e.altKey && e.ctrlKey) {
                 this.hotkeyMode(true);
-                this.showGlobal() && this.$globalFlags.toggleClass(activeName, true);
+
                 this.setScope(this.rootScope);
 
             }
@@ -108,6 +117,7 @@ function HotKeysManager(scope) {
                 try {
 
                     if (this.hotkeyMode()) {
+                        setTimeout(() => { this.setScope(); }, 200);//本来想使用 _.throttle 但是目前看起来没必要
                         var cur_element;
                         cur_element = this.flagMap.get(keyCombination) || this.globalFlagMap.get(keyCombination);
                         $(cur_element).hasClass(activeName) && cur_element.click();
@@ -135,10 +145,14 @@ function HotKeysManager(scope) {
          * 根据属性配置是否阻止事件冒泡
          * @param {*} e Event
          * @return {Bool} 是否阻止事件冒泡
+         * @desc 因为 clickFlag是通过 document 委托注册，当 data-flag 所在元素阻止事件冒泡 导致
+         * $(cur_element).hasClass(activeName) && cur_element.click();  并不会触发 clickFlage ，所以setTimeout 逻辑必须在keyup 里
          */
         function clickFlag(e) {
+            //TODO 判读next 跟当前是否相等
             if (this.hotkeyMode() && e.target.dataset.next) {
-                this.setScope(e.target.dataset.next);
+                 this.setScope(e.target.dataset.next);
+              //  setTimeout(() => { this.setScope(e.target.dataset.next); }, 200);//本来想使用 _.throttle 但是目前看起来没必要
             } else {
                 this.$flags.toggleClass(activeName, false);
                 this.hotkeyMode(false);
@@ -151,7 +165,7 @@ function HotKeysManager(scope) {
 
         this._initEvent();
         this._initEvent = null;
-        this.$globalFlags = $('[data-scope=' + scope + ']');
+        this.$globalFlags = $(`[data-scope=${this.scope}]:visible`);
         this.globalFlagMap = this.convertFlags2Map(this.$globalFlags);
     };
     this._init();

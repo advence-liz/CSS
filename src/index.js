@@ -3,7 +3,7 @@ import "./HotKeysManager";
 //var hotkeysManager = new HotkeysManager('globalRoot');
 var print = $("#print");
 $(document).on("click", '[data-flag]', function (e) {
-    print.text(e.currentTarget.outerHTML + "clickd!");
+    print.text(e.currentTarget.outerHTML + "clicked!");
 });
 //HK.showGlobal(true);
-HK.setRootScope("ScopeA");
+HotKeysManager.setRootScope("ScopeA");
