@@ -117,10 +117,10 @@ function HotKeysManager(scope) {
                 try {
 
                     if (this.hotkeyMode()) {
-                        setTimeout(() => { this.setScope(); }, 200);//本来想使用 _.throttle 但是目前看起来没必要
-                        var cur_element;
+                        let cur_element;
                         cur_element = this.flagMap.get(keyCombination) || this.globalFlagMap.get(keyCombination);
                         $(cur_element).hasClass(activeName) && cur_element.click();
+                        setTimeout(() => { clickFlag(cur_element); }, 200);//本来想使用 _.throttle 但是目前看起来没必要
                     }
 
 
@@ -149,8 +149,9 @@ function HotKeysManager(scope) {
          * $(cur_element).hasClass(activeName) && cur_element.click();  并不会触发 clickFlage ，所以setTimeout 逻辑必须在keyup 里
          */
         function clickFlag(e) {
+            let next = e||e.dataset.next||e.target.dataset.next;
             //TODO 判读next 跟当前是否相等
-            if (this.hotkeyMode() && e.target.dataset.next) {
+            if (this.hotkeyMode() && next) {
                  this.setScope(e.target.dataset.next);
               //  setTimeout(() => { this.setScope(e.target.dataset.next); }, 200);//本来想使用 _.throttle 但是目前看起来没必要
             } else {
