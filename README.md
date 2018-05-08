@@ -6,7 +6,8 @@
 
 ## TODO
 [ ] doc
-[ ] remove webpack
+[x] remove webpack
+[ ] add create template cmd
 
 npm start
 
