@@ -2,6 +2,7 @@
   "name": "css-server",
   "version": "1.0.0",
   "description": "for css hot test scafflod",
+  "module":"demo",
   "main": "index.js",
   "scripts": {
     "start": "gulp start"

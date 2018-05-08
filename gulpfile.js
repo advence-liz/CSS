@@ -4,22 +4,26 @@ const less = require('gulp-less');
 const browserSync = require('browser-sync');
 const reload = browserSync.reload;
 const path = require("path");
+const pkg = require("./package.json");
+// console.log(module)
+const dir = path.join('src',pkg.module);
+
 
 gulp.task('html', function () {
-  return gulp.src([path.join('src', 'favicon.ico'), path.join('src', '*.html')])
+  return gulp.src([path.join(dir, 'favicon.ico'), path.join(dir,'*.html')])
     .pipe(gulp.dest('app'));
 });
 /**
  * 如果有必要可以可以扩展js 预编译
  */
 gulp.task('js', function () {
-  return gulp.src(path.join('src', '*.js'))
+  return gulp.src(path.join(dir, '*.js'))
     .pipe(gulp.dest('app'))
     .pipe(reload({ stream: true }));
 });
 
 gulp.task('less', function () {
-  return gulp.src(path.join('src', 'index.less'))
+  return gulp.src(path.join(dir,'index.less'))
     .pipe(less())
     .pipe(gulp.dest('app'))
     .pipe(reload({ stream: true }));
@@ -34,7 +38,7 @@ gulp.task('start', ['less', 'js','html'], function () {
     }
   });
 
-  gulp.watch('src/*.less', ['less']);
-  gulp.watch('src/*.js', ['js']);
-  gulp.watch('src/*.html', ['html',reload]);
+  gulp.watch(path.join(dir,'*.less'), ['less']);
+  gulp.watch(path.join(dir,'*.js'), ['js']);
+  gulp.watch(path.join(dir,'*.html'), ['html',reload]);
 });
