@@ -1,35 +1,35 @@
-"use strict"
-//导入工具包 require('node_modules里对应模块')
-const gulp = require("gulp"), //本地安装gulp所用到的地方
-    del = require("del"),
-    argv = require('yargs').argv,
-    path = require('path'),
-    Q = require('q'),
-    webpack = require("webpack"),
-    webpackStream = require("webpack-stream"),
-    util = require("gulp-util"),
-    less = require("gulp-less"),
-    sourcemaps = require("gulp-sourcemaps"),
-    browserSync = require('browser-sync'),
-    reload = browserSync.reload,
-    exec = require('child_process');
-const dist ="dist",
-      build= 'build';
+'use strict'
+// 导入工具包 require('node_modules里对应模块')
+const gulp = require('gulp'), // 本地安装gulp所用到的地方
+  del = require('del'),
+  argv = require('yargs').argv,
+  path = require('path'),
+  Q = require('q'),
+  webpack = require('webpack'),
+  webpackStream = require('webpack-stream'),
+  util = require('gulp-util'),
+  less = require('gulp-less'),
+  sourcemaps = require('gulp-sourcemaps'),
+  browserSync = require('browser-sync'),
+  reload = browserSync.reload,
+  exec = require('child_process')
+const dist = 'dist',
+  build = 'build'
 
 /**
  * @var {Object} JSWebpackEntry webpack javascript enrty oputput config
  */
 let JSWebpackEntry = {
-    entry: {
-        dust: './js'
-    },
-    output: {
-        path: path.resolve(__dirname, build),
-        filename: "[name].js"
-    }
-};
+  entry: {
+    dust: './js'
+  },
+  output: {
+    path: path.resolve(__dirname, build),
+    filename: '[name].js'
+  }
+}
 /**
- * 构建webpack task （虽然也可以在webpack传入数组构建多个task） 
+ * 构建webpack task （虽然也可以在webpack传入数组构建多个task）
  * @param {Object} customConfig 自定义webpack 配置部分主要是 入口出口
  * @param {Deferred} deferred 外部传入的 deferred 对象，在此方法内定义 deferred 并不好使所以从外部传入了
  * @example
@@ -41,51 +41,52 @@ let JSWebpackEntry = {
  * });
  */
 
-function getWebpackTask(customConfig, deferred) {
+function getWebpackTask (customConfig, deferred) {
+  let webpackConfig = require('./webpack.config')
+  let currentConfig = Object.assign(
+    Object.create(null),
+    webpackConfig,
+    customConfig
+  )
 
-    let webpackConfig = require("./webpack.config");
-    let currentConfig = Object.assign(Object.create(null), webpackConfig, customConfig);
+  webpack(currentConfig, (err, stats) => {
+    if (err) {
+      if (err.details) {
+        console.error(err.details)
+      }
+      deferred.reject()
+      throw err.stack || err
+    }
 
-    webpack(currentConfig, (err, stats) => {
-        if (err) {
-            if (err.details) {
-                console.error(err.details);
-            }
-            deferred.reject();
-            throw (err.stack || err);
-        }
+    const info = stats.toJson()
 
-        const info = stats.toJson();
+    if (stats.hasErrors()) {
+      console.error(info.errors)
+    }
 
-        if (stats.hasErrors()) {
-            console.error(info.errors);
-
-        }
-
-        if (stats.hasWarnings()) {
-            console.warn(info.warnings);
-
-        }
-        console.log(stats.toString({
-            chunks: false,  // 使构建过程更静默无输出
-            colors: true    // 在控制台展示颜色
-          }));
-        deferred.resolve();
-    });
-
+    if (stats.hasWarnings()) {
+      console.warn(info.warnings)
+    }
+    console.log(
+      stats.toString({
+        chunks: false, // 使构建过程更静默无输出
+        colors: true // 在控制台展示颜色
+      })
+    )
+    deferred.resolve()
+  })
 }
 
-
 gulp.task('js', function () {
-    let deferred = Q.defer();
-    getWebpackTask(JSWebpackEntry, deferred);
-    //deferred.promise.then(function () {})
-    return deferred.promise;
-});
+  let deferred = Q.defer()
+  getWebpackTask(JSWebpackEntry, deferred)
+  // deferred.promise.then(function () {})
+  return deferred.promise
+})
 
-//gulp.task(name[, deps], fn) 定义任务  name：任务名称 deps：依赖任务名称 fn：回调函数
-//gulp.src(globs[, options]) 执行任务处理的文件  globs：处理的文件路径(字符串或者字符串数组) 
-//gulp.dest(path[, options])处理完后文件生成路径
+// gulp.task(name[, deps], fn) 定义任务  name：任务名称 deps：依赖任务名称 fn：回调函数
+// gulp.src(globs[, options]) 执行任务处理的文件  globs：处理的文件路径(字符串或者字符串数组)
+// gulp.dest(path[, options])处理完后文件生成路径
 
 // gulp 只有你需要熟知的参数标记，其他所有的参数标记只在一些任务需要的时候使用。
 
