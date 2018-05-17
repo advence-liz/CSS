@@ -8,6 +8,7 @@
 [ ] doc
 [x] remove webpack
 [ ] add create template cmd
+配置文件还是应该为json ，通过json获取数组，并且相应的对数组进行正删改查
 
 npm start
 
