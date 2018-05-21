@@ -1,4 +1,4 @@
-# CSS
+# sparrow
 这个分支构建了一个，基于browser-sync 的热替换脚手架
 ## REF
 - [注释](http://www.jianshu.com/p/bd1f551a1915)
