@@ -11,7 +11,6 @@ const allModule = fs.readdirSync(path.join(__dirname, 'src'))
 const root = path.join('src', pkg.module)
 const chalk = require('chalk')
 
-
 gulp.task('html', function() {
   return gulp
     .src([path.join(root, 'favicon.ico'), path.join(root, '*.html')])
@@ -27,6 +26,11 @@ gulp.task('js', function() {
     .pipe(reload({ stream: true }))
 })
 
+// gulp.src(path.join('less','dust.less'))
+//         .pipe(sourcemaps.init())
+//         .pipe(less())
+//         .pipe(sourcemaps.write('./maps'))
+//         .pipe(gulp.dest(build))
 gulp.task('less', function() {
   return gulp
     .src(path.join(root, 'index.less'))
@@ -51,15 +55,14 @@ gulp.task('start', ['less', 'js', 'html'], function() {
 // sparrow
 
 const beautify = require('js-beautify').js_beautify
-    
+
 gulp.task('checkout', function() {
   let currentModule = pkg.module
   let nextModule = argv.b
   if (allModule.indexOf(nextModule > -1)) {
     pkg.module = nextModule
-    let packageText = beautify( JSON.stringify(pkg))
-    fs.writeFileSync(path.join(__dirname, 'package.json'),packageText )
-   
+    let packageText = beautify(JSON.stringify(pkg))
+    fs.writeFileSync(path.join(__dirname, 'package.json'), packageText)
   }
   if (nextModule) {
     return gulp

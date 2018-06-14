@@ -1,1 +1,1 @@
-console.log("Hello passenger！")
+console.log('Hello passenger！')

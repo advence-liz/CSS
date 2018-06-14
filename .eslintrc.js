@@ -1,3 +1,4 @@
 module.exports = {
-    "extends": "standard"
-};
+  extends: 'standard',
+  rules: { 'space-before-function-paren': 0 }
+}
